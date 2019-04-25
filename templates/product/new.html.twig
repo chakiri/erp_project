@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Product{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+    {% if editMode %}
+        <h1>Edit Product</h1>
+    {% else %}
+        <h1>New Product</h1>
+    {% endif %}
+
+    {{ form_start(formProduct) }}
+
+    {{ form_row(formProduct.type) }}
+    {{ form_row(formProduct.name) }}
+    {{ form_row(formProduct.description) }}
+    {{ form_row(formProduct.stock) }}
+    {{ form_row(formProduct.reference) }}
+    {{ form_row(formProduct.code) }}
+    {{ form_row(formProduct.provider) }}
+
+    <button type="submit" class="btn btn-primary">
+        {% if editMode %}
+            Edit product
+        {% else %}
+            Add product
+        {% endif %}
+    </button>
+
+    {{ form_end(formProduct) }}
+</div>
+{% endblock %}
