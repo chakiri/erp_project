@@ -9,5 +9,9 @@
     <p>{{ product.type }}</p>
     <p>{{ product.description }}</p>
     <p>{{ product.stock }}</p>
+    
+    {% if product.filename %}
+        <img src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="{{ product.filename }}" width="100px" height="100px">
+    {% endif %}
 </div>
 {% endblock %}
