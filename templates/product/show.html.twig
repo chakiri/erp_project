@@ -11,7 +11,7 @@
     <p>{{ product.stock }}</p>
     
     {% if product.filename %}
-        <img src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="{{ product.filename }}" width="100px" height="100px">
+        <img src="{{ vich_uploader_asset(product, 'imageFile') | imagine_filter('my_thumb') }}" alt="{{ product.filename }}" >
     {% endif %}
 </div>
 {% endblock %}
