@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="container">
+
+        {{ form_start(form) }}
+
+        {{ form_row(form.username) }}
+        {{ form_row(form.email) }}
+
+        <button type="submit" class="btn btn-primary">Edit</button>
+        {{ form_end(form) }}
+
+    </section>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>{{ customer.name }}</h1>
+    <p>{{ customer.type }}</p>
+    <p>{{ customer.email }}</p>
+    <p>{{ customer.code }}</p>
+    <p>{{ customer.address }}</p>
+    <p>{{ customer.postalCode }}</p>
+    <p>{{ customer.city }}</p>
+    <p>{{ customer.country }}</p>
+</div>
+{% endblock %}
