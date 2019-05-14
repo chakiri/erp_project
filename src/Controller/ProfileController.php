@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * User controller.
+ * Profile controller.
  *
  * @Route("my_account")
  */

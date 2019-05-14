@@ -10,10 +10,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
+
+/**
+ * Product controller.
+ *
+ * @Route("product")
+ */
 class ProductController extends AbstractController
 {
     /**
-     * @Route("/", name="product")
+     * @Route("/", name="product_index")
      */
     public function index(ProductRepository $repository)
     {
@@ -25,8 +31,8 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/product/edit/{id}", name="product_edit")
-     * @Route("/product/new", name="product_new")
+     * @Route("/edit/{id}", name="product_edit")
+     * @Route("/new", name="product_new")
      */
     public function form(Product $product = null, ObjectManager $manager ,Request $request)
     {
@@ -56,7 +62,7 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/product/{id}", name="product_show")
+     * @Route("/{id}", name="product_show")
      */
     public function show(Product $product)
     {
