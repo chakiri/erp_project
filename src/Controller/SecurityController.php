@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Profile;
 use App\Entity\User;
 use App\Form\RegistrationType;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -31,9 +32,14 @@ class SecurityController extends AbstractController
 
             $manager->persist($user);
 
+            $profile = new Profile();
+            $profile->setUser($user);
+
+            $manager->persist($profile);
+
             $manager->flush();
 
-            return $this->redirectToRoute('product');
+            return $this->redirectToRoute('profile_edit');
         }
 
         return $this->render('security/registration.html.twig', [

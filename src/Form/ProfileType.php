@@ -2,24 +2,22 @@
 
 namespace App\Form;
 
-use App\Entity\Product;
+use App\Entity\Profile;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ProductType extends AbstractType
+class ProfileType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('type')
-            ->add('name')
-            ->add('description')
-            ->add('stock')
-            ->add('reference')
-            ->add('code')
-            ->add('provider')
+            ->add('firstname')
+            ->add('lastname')
+
+            ->add('user', UserType::class)
+
             ->add('imageFile', FileType::class, [
                 'required' => false
             ])
@@ -29,7 +27,7 @@ class ProductType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Product::class,
+            'data_class' => Profile::class,
         ]);
     }
 }

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="container">
+
+        {{ form_start(formProfile) }}
+
+        {{ form_row(formProfile.firstname) }}
+        {{ form_row(formProfile.lastname) }}
+        {{ form_row(formProfile.user.username) }}
+        {{ form_row(formProfile.user.email) }}
+        {{ form_row(formProfile.imageFile) }}
+
+        <button type="submit" class="btn btn-primary">Edit</button>
+
+        {{ form_end(formProfile) }}
+        {#{{ form_end(formProfile, {'render_rest': false}) }}#}
+
+    </section>
+{% endblock %}

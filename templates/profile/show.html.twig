@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="container">
+
+        {{ profile.firstname ?? 'null'  }}
+        {{ profile.lastname  ?? 'null' }}
+        {{ profile.user.username ?? 'null'  }}
+        {{ profile.user.email  ?? 'null' }}
+
+    </section>
+{% endblock %}
