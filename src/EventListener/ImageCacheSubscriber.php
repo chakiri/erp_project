@@ -4,6 +4,7 @@ namespace App\EventListener;
 
 
 use App\Entity\Product;
+use App\Entity\Profile;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
@@ -32,7 +33,7 @@ class ImageCacheSubscriber implements EventSubscriber
 
     public function preUpdate(LifecycleEventArgs $args){
         $entity = $args->getEntity();
-        if (!$entity instanceof Product){
+        if (!$entity instanceof Product && !$entity instanceof Profile){
             return;
         }
 
@@ -43,7 +44,7 @@ class ImageCacheSubscriber implements EventSubscriber
 
     public function preRemove(LifecycleEventArgs $args){
         $entity = $args->getEntity();
-        if (!$entity instanceof Product){
+        if (!$entity instanceof Product && !$entity instanceof Profile){
             return;
         }
 

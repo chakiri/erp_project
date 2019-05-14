@@ -45,8 +45,6 @@ class ProfileController extends AbstractController
 
         $form = $this->createForm(ProfileType::class, $profile);
 
-        dump($form);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
