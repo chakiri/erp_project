@@ -19,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
     /**
-     * @Route("/", name="product_index")
+     * @Route("/", name="product_ index")
      */
     public function index(ProductRepository $repository)
     {
