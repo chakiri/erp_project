@@ -7,10 +7,12 @@
 
 // any CSS you require will output into a single css file (app.css in this case)
 require('../css/app.css');
-
-require('../js/vendor.js');
+require('../css/theme.css');
+require('../css/font-face.css');
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 const $ = require('jquery');
+
+require('../js/vendor.js');
 
 console.log('Hello from MyERP! ');
