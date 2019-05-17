@@ -18,6 +18,13 @@ Encore
      * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
+    .addEntry('vendor', './assets/js/vendor.js')
+    .addEntry('main', './assets/js/main.js')
+
+    .addStyleEntry('theme', './assets/css/theme.css')
+    .addStyleEntry('font-face', './assets/css/font-face.css')
+
+
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
 
@@ -68,7 +75,7 @@ Encore
 var config = Encore.getWebpackConfig();
 
 config.externals = {
-    jquery: 'jQuery'
+    jquery : 'jQuery'
 }
 
 module.exports = config;
