@@ -1,4 +1,5 @@
 var Encore = require('@symfony/webpack-encore');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 Encore
     // directory where compiled assets will be stored
@@ -23,6 +24,10 @@ Encore
 
     .addStyleEntry('theme', './assets/css/theme.css')
     .addStyleEntry('font-face', './assets/css/font-face.css')
+
+    .addPlugin(new CopyWebpackPlugin([
+        { from: './assets/images', to: 'images' }
+    ]))
 
 
     //.addEntry('page1', './assets/js/page1.js')

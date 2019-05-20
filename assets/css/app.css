@@ -1,3 +1,7 @@
-body {
-    opacity: inherit !important;
+.logo{
+    text-align: center;
+}
+
+.logo img{
+    max-width: 50%;
 }
