@@ -3,14 +3,134 @@
 {% block title %}New Product{% endblock %}
 
 {% block body %}
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="overview-wrap">
+                            <h2 class="title-1">Product</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-t-25">
+                    <div class="col-lg-10">
+                        <div class="card">
+                            <div class="card-header">
+                                {% if editMode %}
+                                    <strong>Edit Form</strong> Product
+                                {% else %}
+                                    <strong>New Form</strong> Product
+                                {% endif %}
+                            </div>
+                            <div class="card-body card-block">
+                                {{ form_start(formProduct, {'attr': {'class': 'form-horizontal'}}) }}
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label class=" form-control-label">User</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <p class="form-control-static">{{ app.user.username }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            {{ form_label(formProduct.reference)}}
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            {{ form_widget(formProduct.reference, {'attr': {'class': 'form-control', 'placeholder': 'FR1234567890'}}) }}
+                                            <small class="form-text text-muted">Reference of product</small>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            {{ form_label(formProduct.name)}}
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            {{ form_widget(formProduct.name, {'attr': {'class': 'form-control', 'placeholder': 'Name ...'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            {{ form_label(formProduct.description)}}
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            {{ form_widget(formProduct.description, {'attr': {'class': 'form-control', 'placeholder': 'Content ...', 'rows': '9'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label class=" form-control-label">Type</label>
+                                        </div>
+                                        <div class="col col-md-9">
+                                            <div class="form-check">
+                                                <div class="radio">
+                                                    <label for="radio1" class="form-check-label ">
+                                                        <input type="radio" id="radio1" name="radios" value="option1" class="form-check-input">Option 1
+                                                    </label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label for="radio2" class="form-check-label ">
+                                                        <input type="radio" id="radio2" name="radios" value="option2" class="form-check-input">Option 2
+                                                    </label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label for="radio3" class="form-check-label ">
+                                                        <input type="radio" id="radio3" name="radios" value="option3" class="form-check-input">Option 3
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            <label for="select" class=" form-control-label">Provider</label>
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            <select name="select" id="select" class="form-control">
+                                                <option value="0">Please select</option>
+                                                <option value="1">Option #1</option>
+                                                <option value="2">Option #2</option>
+                                                <option value="3">Option #3</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            {{ form_label(formProduct.imageFile)}}
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            {{ form_widget(formProduct.imageFile, {'attr': {'class': 'form-control-file'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            {{ form_label(formProduct.stock)}}
+                                        </div>
+                                        <div class="col-12 col-md-4">
+                                            {{ form_widget(formProduct.stock, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary btn-sm">
+                                        <i class="fa fa-dot-circle-o"></i> Submit
+                                    </button>
+                                    <button type="reset" class="btn btn-danger btn-sm">
+                                        <i class="fa fa-ban"></i> Reset
+                                    </button>
+                                </div>
+                            {{ form_end(formProduct) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <div class="container">
-    {% if editMode %}
-        <h1>Edit Product</h1>
-    {% else %}
-        <h1>New Product</h1>
-    {% endif %}
+    </div>
 
+
+{#
     {{ form_start(formProduct) }}
 
     {{ form_row(formProduct.type) }}
@@ -31,5 +151,6 @@
     </button>
 
     {{ form_end(formProduct) }}
-</div>
+#}
+
 {% endblock %}
