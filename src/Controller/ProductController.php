@@ -73,4 +73,22 @@ class ProductController extends AbstractController
             'product' => $product
         ]);
     }
+
+    /**
+     * @Route("/delete/{id}", name="product_delete")
+     */
+    public function delete(ObjectManager $manager, Product $product)
+    {
+        if ($product){
+            $product->setIsDeleted(true);
+
+            $manager->persist($product);
+
+            $manager->flush();
+
+            $this->addFlash('success', 'The product has been remove !');
+        }
+
+        return $this->redirectToRoute('product_ index');
+    }
 }

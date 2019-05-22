@@ -90,6 +90,11 @@ class Product
      */
     private $type;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isDeleted;
+
     public function __construct()
     {
         $this->createdAt = New \DateTime('now');
@@ -255,6 +260,18 @@ class Product
     public function setType(?TypeProduct $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getIsDeleted(): ?bool
+    {
+        return $this->isDeleted;
+    }
+
+    public function setIsDeleted(bool $isDeleted): self
+    {
+        $this->isDeleted = $isDeleted;
 
         return $this;
     }
