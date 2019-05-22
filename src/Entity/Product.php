@@ -38,11 +38,6 @@ class Product
     private $imageFile;
 
     /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $type;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $name;
@@ -61,11 +56,6 @@ class Product
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $reference;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $code;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -94,6 +84,12 @@ class Product
      */
     private $createdBy;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\TypeProduct")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $type;
+
     public function __construct()
     {
         $this->createdAt = New \DateTime('now');
@@ -102,18 +98,6 @@ class Product
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
-
-        return $this;
     }
 
     public function getName(): ?string
@@ -148,18 +132,6 @@ class Product
     public function setReference(?string $reference): self
     {
         $this->reference = $reference;
-
-        return $this;
-    }
-
-    public function getCode(): ?string
-    {
-        return $this->code;
-    }
-
-    public function setCode(string $code): self
-    {
-        $this->code = $code;
 
         return $this;
     }
@@ -271,6 +243,18 @@ class Product
     public function setCreatedBy(?User $createdBy): self
     {
         $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    public function getType(): ?TypeProduct
+    {
+        return $this->type;
+    }
+
+    public function setType(?TypeProduct $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

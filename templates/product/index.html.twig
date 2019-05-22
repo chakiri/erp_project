@@ -69,7 +69,7 @@
                                         <tr>
                                             <td>{{ product.reference }}</td>
                                             <td>{{ product.createdAt|date("m/d/Y") }}</td>
-                                            <td>{{ product.type }}</td>
+                                            <td>{{ product.type.name }}</td>
                                             <td>{{ product.name }}</td>
                                             <td {% if product.stock == 0 %}class="denied">Empty{% else %}<td class="process">{{ product.stock }}{% endif %}</td>
                                             <td>

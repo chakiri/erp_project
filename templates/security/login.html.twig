@@ -22,8 +22,8 @@
                     <div class="login-wrap">
                         <div class="login-content">
                             <div class="login-logo">
-                                <a href="#">
-                                    <img src="images/icon/logo.png" alt="CoolAdmin">
+                                <a href="{{ path('index_default') }}">
+                                    <img src="{{ asset('build/images/logoERPcouleur.png') }}" alt="MyERP">
                                 </a>
                             </div>
 
@@ -60,7 +60,7 @@
                                 <div class="register-link">
                                     <p>
                                         Don't you have account?
-                                        <a href="#">Sign Up Here</a>
+                                        <a href="{{ path('security_registration') }}">Sign Up Here</a>
                                     </p>
                                 </div>
                             </div>

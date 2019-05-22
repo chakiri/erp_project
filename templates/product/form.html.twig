@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Product{% endblock %}
+{% block title %}
+    {% if editMode %}Edit Product{% else %}New Product{% endif %}
+{% endblock %}
 
 {% block body %}
     <div class="main-content">
@@ -30,7 +32,7 @@
                                             <label class=" form-control-label">User</label>
                                         </div>
                                         <div class="col-12 col-md-9">
-                                            <p class="form-control-static">{{ app.user.username }}</p>
+                                            <p class="form-control-static">{{ form_widget(formProduct.createdBy, {'id' : 'disabledSelect', 'attr' : {'class': 'form-control', 'disabled': ''}}) }}</p>
                                         </div>
                                     </div>
                                     <div class="row form-group">
@@ -40,6 +42,14 @@
                                         <div class="col-12 col-md-9">
                                             {{ form_widget(formProduct.reference, {'attr': {'class': 'form-control', 'placeholder': 'FR1234567890'}}) }}
                                             <small class="form-text text-muted">Reference of product</small>
+                                        </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3">
+                                            {{ form_label(formProduct.type) }}
+                                        </div>
+                                        <div class="col-12 col-md-9">
+                                            {{ form_widget(formProduct.type, {'id' : 'select', 'attr' : {'class': 'form-control'}}) }}
                                         </div>
                                     </div>
                                     <div class="row form-group">
@@ -60,39 +70,11 @@
                                     </div>
                                     <div class="row form-group">
                                         <div class="col col-md-3">
-                                            <label class=" form-control-label">Type</label>
-                                        </div>
-                                        <div class="col col-md-9">
-                                            <div class="form-check">
-                                                <div class="radio">
-                                                    <label for="radio1" class="form-check-label ">
-                                                        <input type="radio" id="radio1" name="radios" value="option1" class="form-check-input">Option 1
-                                                    </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label for="radio2" class="form-check-label ">
-                                                        <input type="radio" id="radio2" name="radios" value="option2" class="form-check-input">Option 2
-                                                    </label>
-                                                </div>
-                                                <div class="radio">
-                                                    <label for="radio3" class="form-check-label ">
-                                                        <input type="radio" id="radio3" name="radios" value="option3" class="form-check-input">Option 3
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row form-group">
-                                        <div class="col col-md-3">
-                                            <label for="select" class=" form-control-label">Provider</label>
+                                            {{ form_label(formProduct.provider)}}
                                         </div>
                                         <div class="col-12 col-md-9">
-                                            <select name="select" id="select" class="form-control">
-                                                <option value="0">Please select</option>
-                                                <option value="1">Option #1</option>
-                                                <option value="2">Option #2</option>
-                                                <option value="3">Option #3</option>
-                                            </select>
+                                            {{ form_widget(formProduct.provider, {'attr': {'class': 'form-control', 'placeholder': 'Provider ...'}}) }}
+                                            <small class="form-text text-muted">Company of providence</small>
                                         </div>
                                     </div>
                                     <div class="row form-group">
@@ -128,29 +110,5 @@
         </div>
 
     </div>
-
-
-{#
-    {{ form_start(formProduct) }}
-
-    {{ form_row(formProduct.type) }}
-    {{ form_row(formProduct.name) }}
-    {{ form_row(formProduct.description) }}
-    {{ form_row(formProduct.stock) }}
-    {{ form_row(formProduct.reference) }}
-    {{ form_row(formProduct.code) }}
-    {{ form_row(formProduct.provider) }}
-    {{ form_row(formProduct.imageFile) }}
-
-    <button type="submit" class="btn btn-primary">
-        {% if editMode %}
-            Edit product
-        {% else %}
-            Add product
-        {% endif %}
-    </button>
-
-    {{ form_end(formProduct) }}
-#}
 
 {% endblock %}

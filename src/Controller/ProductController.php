@@ -36,8 +36,11 @@ class ProductController extends AbstractController
      */
     public function form(Product $product = null, ObjectManager $manager ,Request $request)
     {
+        $user = $this->getUser();
         if ($product == null){
             $product = new Product();
+
+            $product->setCreatedBy($user);
         }
 
         $form = $this->createForm(ProductType::class, $product);
