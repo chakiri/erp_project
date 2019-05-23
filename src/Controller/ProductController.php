@@ -23,7 +23,7 @@ class ProductController extends AbstractController
      */
     public function index(ProductRepository $repository)
     {
-        $products = $repository->findAll();
+        $products = $repository->findBy(['isDeleted' => false]);
 
         return $this->render('product/index.html.twig', [
             'products' => $products,
@@ -36,11 +36,12 @@ class ProductController extends AbstractController
      */
     public function form(Product $product = null, ObjectManager $manager ,Request $request)
     {
-        $user = $this->getUser();
         if ($product == null){
             $product = new Product();
 
-            $product->setCreatedBy($user);
+            $user = $this->getUser();
+        }else{
+            $user = $product->getCreatedBy();
         }
 
         $form = $this->createForm(ProductType::class, $product);
@@ -48,6 +49,8 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
+
+            $product->setCreatedBy($user);
 
             $manager->persist($product);
 
@@ -86,7 +89,9 @@ class ProductController extends AbstractController
 
             $manager->flush();
 
-            $this->addFlash('success', 'The product has been remove !');
+            $this->addFlash('success', 'The product has been removed !');
+        }else{
+            $this->addFlash('error', ' !');
         }
 
         return $this->redirectToRoute('product_ index');

@@ -30,15 +30,16 @@
 
                 <!-- MAIN CONTENT PAGE -->
                 <div class="main-content">
-                    {% for message in app.flashes('success') %}
-                        <div class="m-l-30 m-r-30 sufee-alert alert with-close alert-success alert-dismissible fade show">
-                            <span class="badge badge-pill badge-success">Success</span>
-                            {{ message }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+                    <!-- FLASH MESSAGE -->
+                    {% for label, messages in app.flashes %}
+                        {% for message in messages %}
+                            <div class="m-l-30 m-r-30 sufee-alert alert with-close alert-{{ label }} alert-dismissible fade show">
+                                {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                        {% endfor %}
                     {% endfor %}
+                    <!-- END FLASH MESSAGE -->
 
                 {% block body %}{% endblock %}
 

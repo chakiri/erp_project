@@ -71,6 +71,15 @@
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3">
+                                        {{ form_label(formProduct.price)}}
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        {{ form_widget(formProduct.price, {'attr': {'class': 'form-control', 'placeholder': 'Price ...'}}) }}
+                                        <small class="form-text text-muted">Price in €</small>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
                                         {{ form_label(formProduct.imageFile)}}
                                     </div>
                                     <div class="col-12 col-md-9">

@@ -23,7 +23,7 @@ class Product
 
     /**
      * @var String|null
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $filename;
 
@@ -74,7 +74,7 @@ class Product
     private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $updatedAt;
 
@@ -95,9 +95,15 @@ class Product
      */
     private $isDeleted;
 
+    /**
+     * @ORM\Column(type="decimal", precision=10, scale=2, nullable=true)
+     */
+    private $price;
+
     public function __construct()
     {
         $this->createdAt = New \DateTime('now');
+        $this->isDeleted = false;
     }
 
     public function getId(): ?int
@@ -272,6 +278,18 @@ class Product
     public function setIsDeleted(bool $isDeleted): self
     {
         $this->isDeleted = $isDeleted;
+
+        return $this;
+    }
+
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    public function setPrice($price): self
+    {
+        $this->price = $price;
 
         return $this;
     }
