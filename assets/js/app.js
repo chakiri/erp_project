@@ -11,6 +11,7 @@ require('../css/app.css');
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 const $ = require('jquery');
 
-require('../js/vendor.js');
-
 console.log('Hello from MyERP! ');
+
+// Include js fields of the app
+require('../js/user.js');

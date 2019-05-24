@@ -67,10 +67,16 @@ class User implements UserInterface
      */
     private $products;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isValid;
+
     public function __construct()
     {
         $this->roles = array('ROLE_USER');
         $this->products = new ArrayCollection();
+        $this->isValid = true;
     }
 
     public function getId(): ?int
@@ -197,5 +203,17 @@ class User implements UserInterface
     public function __toString()
     {
         return $this->getUsername();
+    }
+
+    public function getIsValid(): ?bool
+    {
+        return $this->isValid;
+    }
+
+    public function setIsValid(bool $isValid): self
+    {
+        $this->isValid = $isValid;
+
+        return $this;
     }
 }

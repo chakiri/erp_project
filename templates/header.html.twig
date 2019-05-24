@@ -139,7 +139,7 @@
                                     </div>
                                     <div class="content">
                                         <h5 class="name">
-                                            <a href="#">{{ app.user.profile.firstname }} {{ app.user.profile.lastname }}</a>
+                                            <a href="#">{{ app.user.profile.firstname ?? "" }} {{ app.user.profile.lastname ?? "" }}</a>
                                         </h5>
                                         <span class="email">{{ app.user.email }}</span>
                                     </div>
@@ -158,10 +158,17 @@
                                             <i class="zmdi zmdi-money-box"></i>Billing</a>
                                     </div>
                                 </div>
-                                <div class="account-dropdown__footer">
-                                    <a href="{{ path('security_logout') }}">
-                                        <i class="zmdi zmdi-power"></i>Logout</a>
-                                </div>
+                                {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+                                    <div class="account-dropdown__footer">
+                                        <a href="{{ path('user_index', {'_switch_user': '_exit'}) }}">
+                                            <i class="zmdi zmdi-square-right"></i>Exit impersonation</a>
+                                    </div>
+                                {% else %}
+                                    <div class="account-dropdown__footer">
+                                        <a href="{{ path('security_logout') }}">
+                                            <i class="zmdi zmdi-power"></i>Logout</a>
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

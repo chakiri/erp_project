@@ -34,156 +34,61 @@
                         <div class="table-responsive table-data">
                             <table class="table">
                                 <thead>
-                                <tr>
-                                    <td>
-                                        <label class="au-checkbox">
-                                            <input type="checkbox">
-                                            <span class="au-checkmark"></span>
-                                        </label>
-                                    </td>
-                                    <td>name</td>
-                                    <td>role</td>
-                                    <td>type</td>
-                                    <td></td>
-                                </tr>
+                                    <tr>
+                                        <td>name</td>
+                                        <td>role</td>
+                                        <td>type</td>
+                                        <td>active</td>
+                                        <td>switch to</td>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>
-                                        <label class="au-checkbox">
-                                            <input type="checkbox">
-                                            <span class="au-checkmark"></span>
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <div class="table-data__info">
-                                            <h6>lori lynch</h6>
-                                            <span>
-                                                            <a href="#">johndoe@gmail.com</a>
-                                                        </span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span class="role admin">admin</span>
-                                    </td>
-                                    <td>
-                                        <div class="rs-select2--trans rs-select2--sm">
-                                            <select class="js-select2" name="property">
-                                                <option selected="selected">Full Control</option>
-                                                <option value="">Post</option>
-                                                <option value="">Watch</option>
-                                            </select>
-                                            <div class="dropDownSelect2"></div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                                    <span class="more">
-                                                        <i class="zmdi zmdi-more"></i>
-                                                    </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label class="au-checkbox">
-                                            <input type="checkbox" checked="checked">
-                                            <span class="au-checkmark"></span>
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <div class="table-data__info">
-                                            <h6>lori lynch</h6>
-                                            <span>
-                                                            <a href="#">johndoe@gmail.com</a>
-                                                        </span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span class="role user">user</span>
-                                    </td>
-                                    <td>
-                                        <div class="rs-select2--trans rs-select2--sm">
-                                            <select class="js-select2" name="property">
-                                                <option value="">Full Control</option>
-                                                <option value="" selected="selected">Post</option>
-                                                <option value="">Watch</option>
-                                            </select>
-                                            <div class="dropDownSelect2"></div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                                    <span class="more">
-                                                        <i class="zmdi zmdi-more"></i>
-                                                    </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label class="au-checkbox">
-                                            <input type="checkbox">
-                                            <span class="au-checkmark"></span>
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <div class="table-data__info">
-                                            <h6>lori lynch</h6>
-                                            <span>
-                                                            <a href="#">johndoe@gmail.com</a>
-                                                        </span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span class="role user">user</span>
-                                    </td>
-                                    <td>
-                                        <div class="rs-select2--trans rs-select2--sm">
-                                            <select class="js-select2" name="property">
-                                                <option value="">Full Control</option>
-                                                <option value="" selected="selected">Post</option>
-                                                <option value="">Watch</option>
-                                            </select>
-                                            <div class="dropDownSelect2"></div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                                    <span class="more">
-                                                        <i class="zmdi zmdi-more"></i>
-                                                    </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label class="au-checkbox">
-                                            <input type="checkbox">
-                                            <span class="au-checkmark"></span>
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <div class="table-data__info">
-                                            <h6>lori lynch</h6>
-                                            <span>
-                                                            <a href="#">johndoe@gmail.com</a>
-                                                        </span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <span class="role member">member</span>
-                                    </td>
-                                    <td>
-                                        <div class="rs-select2--trans rs-select2--sm">
-                                            <select class="js-select2" name="property">
-                                                <option selected="selected">Full Control</option>
-                                                <option value="">Post</option>
-                                                <option value="">Watch</option>
-                                            </select>
-                                            <div class="dropDownSelect2"></div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                                    <span class="more">
-                                                        <i class="zmdi zmdi-more"></i>
-                                                    </span>
-                                    </td>
-                                </tr>
+                                    {% for user in users %}
+                                        <tr>
+                                            <td>
+                                                <div class="table-data__info">
+                                                    <h6>{{ user.username }}</h6>
+                                                    <span><a href="#">{{ user.email }}</a></span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                {% if user.roles[0] == "ROLE_ADMIN" %}
+                                                    <span class="role admin">Admin</span>
+                                                {% elseif user.roles[0] == "ROLE_SUPER_ADMIN" %}
+                                                    <span class="role member">Super Admin</span>
+                                                {% else %}
+                                                    <span class="role user">User</span>
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                <div class="table-data__info">
+                                                    <h6>
+                                                        {% if user.roles[0] == "ROLE_ADMIN" %}
+                                                            administration
+                                                        {% elseif user.roles[0] == "ROLE_SUPER_ADMIN" %}
+                                                            Full Control
+                                                        {% else  %}
+                                                            Edition
+                                                        {% endif %}
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <label class="switch switch-3d switch-success mr-3">
+                                                    <input type="checkbox" value="{{ path('user_active', {'id': user.id}) }}" class="switch-input" {% if user.isValid == true %}checked="true"{% endif %} {% if not (is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_ADMIN')) and user != app.user %}disabled=""{% endif %}>
+                                                    <span class="switch-label"></span>
+                                                    <span class="switch-handle"></span>
+                                                </label>
+                                            </td>
+                                            <td>
+                                                {% if is_granted('ROLE_SUPER_ADMIN') and user != app.user %}
+                                                    <a href="{{ path('index_default', {'_switch_user': user.email}) }}"><span class="more"><i class="zmdi zmdi-sign-in"></i></span></a>
+                                                {% else %}
+                                                    <div class="table-data__info"><span><a href="#">not allowed</a></span></div>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>
@@ -197,3 +102,4 @@
         </div>
     </div>
 {% endblock %}
+
