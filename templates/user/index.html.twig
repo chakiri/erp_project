@@ -75,7 +75,7 @@
                                             </td>
                                             <td>
                                                 <label class="switch switch-3d switch-success mr-3">
-                                                    <input type="checkbox" value="{{ path('user_active', {'id': user.id}) }}" class="switch-input" {% if user.isValid == true %}checked="true"{% endif %} {% if not (is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_ADMIN')) and user != app.user %}disabled=""{% endif %}>
+                                                    <input type="checkbox" value="{{ path('user_active', {'id': user.id}) }}" class="switch-input" {% if user.isValid == true %}checked="true"{% endif %} {% if not (is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_ADMIN'))  %}disabled=""{% endif %}>
                                                     <span class="switch-label"></span>
                                                     <span class="switch-handle"></span>
                                                 </label>
