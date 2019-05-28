@@ -79,6 +79,15 @@ class User implements UserInterface
         $this->isValid = true;
     }
 
+    /**
+     * toString
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getUsername();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -196,16 +205,7 @@ class User implements UserInterface
         return $this;
     }
 
-    /**
-     * toString
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->getUsername();
-    }
-
-    public function getIsValid(): ?bool
+    public function isValid(): ?bool
     {
         return $this->isValid;
     }
@@ -216,4 +216,5 @@ class User implements UserInterface
 
         return $this;
     }
+
 }
