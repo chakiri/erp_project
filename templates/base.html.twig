@@ -31,6 +31,7 @@
 
                 <!-- MAIN CONTENT PAGE -->
                 <div class="main-content">
+
                     <!-- FLASH MESSAGE -->
                     {% for label, messages in app.flashes %}
                         {% for message in messages %}
@@ -42,9 +43,12 @@
                     {% endfor %}
                     <!-- END FLASH MESSAGE -->
 
-                {% block body %}{% endblock %}
+                    {% block body %}{% endblock %}
 
                 </div>
+
+                <!--INSERT MODALS IN PAGE-->
+                {% block modals %}{% endblock %}
 
             <!-- END PAGE CONTAINER -->
             </div>
