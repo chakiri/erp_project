@@ -8,7 +8,7 @@
         {{ profile.user.username ?? 'null'  }}
         {{ profile.user.email  ?? 'null' }}
         {% if profile.filename %}
-            <img src="{{ vich_uploader_asset(profile, 'imageFile') | imagine_filter('my_thumb') }}" alt="{{ profile.filename }}" >
+            <img src="{{ vich_uploader_asset(profile, 'imageFile') | imagine_filter('profile_thumb') }}" alt="{{ profile.filename }}" >
         {% endif %}
 
     </section>

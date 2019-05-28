@@ -72,6 +72,12 @@ class User implements UserInterface
      */
     private $isValid;
 
+    /**
+     * @var string token to allow reset password
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $resetToken;
+
     public function __construct()
     {
         $this->roles = array('ROLE_USER');
@@ -215,6 +221,22 @@ class User implements UserInterface
         $this->isValid = $isValid;
 
         return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResetToken(): string
+    {
+        return $this->resetToken;
+    }
+
+    /**
+     * @param string $resetToken
+     */
+    public function setResetToken($resetToken)
+    {
+        $this->resetToken = $resetToken;
     }
 
 }

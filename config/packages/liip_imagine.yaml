@@ -9,4 +9,10 @@ liip_imagine:
                 thumbnail  :
                     size : [261, 261]
                     mode : outbound
-
+        profile_thumb :
+            # adjust the image quality to 75%
+            quality : 75
+            filters :
+                thumbnail  :
+                    size : [261, 261]
+                    mode : outbound
