@@ -33,6 +33,10 @@ security:
              # Allow super admin to switch user
             switch_user: true
 
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 2592000 # 30 days in secondes
+
 
             # activate different ways to authenticate
 
@@ -50,6 +54,6 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/login, allow_if: "!is_fully_authenticated()" }
-        - { path: ^/inscription, allow_if: "!is_fully_authenticated()" }
+        - { path: ^/login, allow_if: "!is_authenticated()" }
+        - { path: ^/inscription, allow_if: "!is_authenticated()" }
         - { path: ^/, roles: ROLE_USER }
