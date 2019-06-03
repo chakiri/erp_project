@@ -1,15 +1,36 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <section class="container">
 
-        {{ profile.firstname ?? 'null'  }}
-        {{ profile.lastname  ?? 'null' }}
-        {{ profile.user.username ?? 'null'  }}
-        {{ profile.user.email  ?? 'null' }}
-        {% if profile.filename %}
-            <img src="{{ vich_uploader_asset(profile, 'imageFile') | imagine_filter('profile_thumb') }}" alt="{{ profile.filename }}" >
-        {% endif %}
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8 offset-md-4 mr-auto ml-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mx-auto d-block">
+                                {% if profile.filename %}
+                                    <img class="rounded-circle mx-auto d-block" src="{{ vich_uploader_asset(profile, 'imageFile') | imagine_filter('profile_thumb') }}" alt="{{ profile.filename }}" >
+                                {% else %}
+                                    <img class="rounded-circle mx-auto d-block" src="{{ asset('build/images/profile_default.png') }}" alt="{{ app.user.username }}" />
+                                {% endif %}
+                                <h5 class="text-sm-center mt-4 mb-1">{{ profile.user.username ?? 'null'  }}</h5>
+                                <div class="blockquote mt-3 text-right location text-sm-center">
+                                    {{ profile.firstname ?? 'firstname not spécified'  }} - {{ profile.lastname ?? 'lastname not spécified'  }}
+                                </div>
+                                <div class="location text-sm-center">
+                                    <i>{{ profile.user.email }}</i>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="card-text text-sm-center">
+                                <a href="{{ path('profile_edit') }}" class="btn btn-link"><i class="fas fa-pencil-square-o"></i> Edit profile</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    </section>
 {% endblock %}

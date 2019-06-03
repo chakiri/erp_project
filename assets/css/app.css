@@ -15,3 +15,7 @@
     color: red;
     font-size: 12px;
 }
+
+.card-body img{
+    width: 170px;
+}

@@ -1,20 +1,52 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+    Edit Profile
+{% endblock %}
+
 {% block body %}
-    <section class="container">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">Edit profile</div>
+                        <div class="card-body card-block">
+                            {{ form_start(formProfile) }}
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        {{ form_widget(formProfile.firstname, {'attr': {'class': 'form-control', 'placeholder': 'firstname ...'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        {{ form_widget(formProfile.lastname, {'attr': {'class': 'form-control', 'placeholder': 'lastname ...'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        {{ form_widget(formProfile.user.username, {'attr': {'class': 'form-control', 'placeholder': 'username ...'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        {{ form_widget(formProfile.user.email, {'attr': {'class': 'form-control', 'placeholder': 'email ...'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        {{ form_widget(formProfile.imageFile, {'attr': {'class': 'form-control-file'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-actions form-group">
+                                    <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                                </div>
+                            {{ form_end(formProfile) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        {{ form_start(formProfile) }}
-
-        {{ form_row(formProfile.firstname) }}
-        {{ form_row(formProfile.lastname) }}
-        {{ form_row(formProfile.user.username) }}
-        {{ form_row(formProfile.user.email) }}
-        {{ form_row(formProfile.imageFile) }}
-
-        <button type="submit" class="btn btn-primary">Edit</button>
-
-        {{ form_end(formProfile) }}
-        {#{{ form_end(formProfile, {'render_rest': false}) }}#}
-
-    </section>
 {% endblock %}
