@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CustomerController extends AbstractController
 {
     /**
-     * @Route("/", name="customer")
+     * @Route("/", name="customer_index")
      */
     public function index(CustomerRepository $customerRepository)
     {

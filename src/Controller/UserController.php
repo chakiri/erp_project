@@ -39,7 +39,7 @@ class UserController extends AbstractController
             ], 403);
         }
 
-        if ($user->getIsValid() == true){
+        if ($user->isValid() == true){
             $user->setIsValid(false);
 
             $manager->persist($user);
@@ -49,7 +49,7 @@ class UserController extends AbstractController
             return $this->json([
                 'code' => '201',
                 'message' => 'user desactivate',
-                'isValid' => $user->getIsValid()
+                'isValid' => $user->isValid()
             ], 201);
         }else{
             $user->setIsValid(true);
@@ -61,7 +61,7 @@ class UserController extends AbstractController
             return $this->json([
                 'code' => '200',
                 'message' => 'user activate',
-                'isValid' => $user->getIsValid()
+                'isValid' => $user->isValid()
             ], 200);
         }
     }

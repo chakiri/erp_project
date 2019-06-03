@@ -16,6 +16,6 @@
     font-size: 12px;
 }
 
-.card-body img{
+.card-body .rounded-circle{
     width: 170px;
 }

@@ -85,7 +85,7 @@ class Product
     private $createdBy;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\TypeProduct")
+     * @ORM\ManyToOne(targetEntity="App\Entity\TypeProduct", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $type;

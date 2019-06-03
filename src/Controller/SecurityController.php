@@ -25,8 +25,6 @@ class SecurityController extends AbstractController
     {
         $user = new User();
 
-        $user->setRoles(['ROLE_SUPER_ADMIN']);
-
         $form = $this->createForm(RegistrationType::class, $user);
 
         $form->handleRequest($request);
