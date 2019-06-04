@@ -54,7 +54,7 @@ class CustomerController extends AbstractController
             ]);
         }
 
-        return $this->render('customer/new.html.twig', [
+        return $this->render('customer/form.html.twig', [
             'formCustomer' => $form->createView(),
             'editMode' => $customer->getId() !== null
         ]);

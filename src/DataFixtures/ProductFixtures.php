@@ -14,7 +14,7 @@ class ProductFixtures extends Fixture
 
         $faker = \Faker\Factory::create('fr_FR');
 
-        for ($i = 0; $i < 2; $i++){
+        for ($i = 0; $i < 3; $i++){
             $typeProduct = new TypeProduct();
 
             $types = ['Game', 'Mobile', 'Accessory'];

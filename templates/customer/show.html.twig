@@ -1,17 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% endblock %}
+{% block title %}{{ customer.name }}{% endblock %}
 
 {% block body %}
 
-<div class="example-wrapper">
-    <h1>{{ customer.name }}</h1>
-    <p>{{ customer.type }}</p>
-    <p>{{ customer.email }}</p>
-    <p>{{ customer.code }}</p>
-    <p>{{ customer.address }}</p>
-    <p>{{ customer.postalCode }}</p>
-    <p>{{ customer.city }}</p>
-    <p>{{ customer.country }}</p>
-</div>
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8 ">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mx-auto d-block">
+
+                                <div class="blockquote mt-3 text-right location">
+                                    <h5 class=" mt-4 mb-1">{{ customer.name }}</h5>
+                                    <p>N° {{ customer.code }}</p>
+                                </div>
+                                <div class="location ">
+                                    <p><strong>Type</strong> : {{ customer.type }}</p>
+                                </div>
+                                <div class="location ">
+                                    <p><strong>Email</strong> : {{ customer.email }}</p>
+                                </div>
+                                <div class="location">
+                                    <p><strong>Address</strong> : {{ customer.address }}</p>
+                                </div>
+                                <div class="location">
+                                    <p><strong>Postal Code</strong> : {{ customer.postalCode }}</p>
+                                </div>
+                                <div class="locationr">
+                                    <p><strong>City</strong> : {{ customer.city }}</p>
+                                </div>
+                                <div class="location">
+                                    <p><strong>Country</strong> : {{ customer.country }}</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="card-text text-sm-center">
+                                <a href="{{ path('customer_edit', {'id': customer.id}) }}" class="btn btn-link"><i class="fas fa-pencil-square-o"></i> Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

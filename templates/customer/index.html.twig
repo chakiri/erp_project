@@ -6,9 +6,47 @@
 
     <div class="section__content section__content--p30">
         <div class="container-fluid">
+            <!-- FILTERS -->
             <div class="row">
-                <div class="col-lg-8">
-                    <!-- TOP CAMPAIGN-->
+                <div class="col-md-10">
+                    <div class="table-data__tool">
+                        <div class="table-data__tool-left">
+                            <div class="rs-select2--light rs-select2--md">
+                                <select class="js-select2" name="property">
+                                    <option selected="selected">All Properties</option>
+                                    <option value="">Option 1</option>
+                                    <option value="">Option 2</option>
+                                </select>
+                                <div class="dropDownSelect2"></div>
+                            </div>
+                            <div class="rs-select2--light rs-select2--sm">
+                                <select class="js-select2" name="time">
+                                    <option selected="selected">Today</option>
+                                    <option value="">3 Days</option>
+                                    <option value="">1 Week</option>
+                                </select>
+                                <div class="dropDownSelect2"></div>
+                            </div>
+                            <button class="au-btn-filter"><i class="zmdi zmdi-filter-list"></i>filters</button>
+                        </div>
+                        <div class="table-data__tool-right">
+                            <a href="{{ path('customer_new') }}" class="au-btn au-btn-icon au-btn--green au-btn--small">
+                                <i class="zmdi zmdi-plus"></i>add customer</a>
+                            <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
+                                <select class="js-select2" name="type">
+                                    <option selected="selected">Export</option>
+                                    <option value="">Option 1</option>
+                                    <option value="">Option 2</option>
+                                </select>
+                                <div class="dropDownSelect2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END FILTERS -->
+            <div class="row">
+                <div class="col-lg-10">
                     <div class="top-campaign">
                         <h3 class="title-3 m-b-30">Customers</h3>
                         <div class="table-responsive">
@@ -18,6 +56,7 @@
                                         <tr>
                                             <td><a href="{{ path('customer_show', {'id': customer.id}) }}">{{ customer.name }}</a></td>
                                             <td>{{ customer.type }}</td>
+                                            <td>N° {{ customer.code }}</td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>

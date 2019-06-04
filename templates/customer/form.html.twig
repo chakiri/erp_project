@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Edit Customer
+{% endblock %}
+
+{% block body %}
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        {% if editMode %}
+                            <div class="card-header">Edit Customer</div>
+                        {% else %}
+                            <div class="card-header">New Customer</div>
+                        {% endif %}
+                        <div class="card-body card-block">
+                            {{ form_start(formCustomer) }}
+                            <div class="form-group">
+                                <div class="input-group">
+                                    {{ form_widget(formCustomer.name, {'attr': {'class': 'form-control', 'placeholder': 'name ...'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    {{ form_widget(formCustomer.type, {'attr': {'class': 'form-control', 'placeholder': 'type ...'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    {{ form_widget(formCustomer.code, {'attr': {'class': 'form-control', 'placeholder': 'code ...'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    {{ form_widget(formCustomer.email, {'attr': {'class': 'form-control', 'placeholder': 'email ...'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    {{ form_widget(formCustomer.address, {'attr': {'class': 'form-control', 'placeholder': 'address ...'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    {{ form_widget(formCustomer.postalCode, {'attr': {'class': 'form-control', 'placeholder': 'postal code ...'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    {{ form_widget(formCustomer.city, {'attr': {'class': 'form-control', 'placeholder': 'city ...'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    {{ form_widget(formCustomer.country, {'attr': {'class': 'form-control', 'placeholder': 'country ...'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-actions form-group">
+                                <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                            </div>
+                            {{ form_end(formCustomer) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
