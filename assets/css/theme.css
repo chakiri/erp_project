@@ -257,6 +257,7 @@ section {
 @media (max-width: 991px) {
     .section__content--p30 {
         padding: 0;
+        margin-bottom: 80px;
     }
 }
 
@@ -4591,7 +4592,7 @@ section {
         margin-top: 10px;
     }
 
-    .table-data__tool .table-data__tool-right > button {
+    .table-data__tool .table-data__tool-right > button, a{
         margin-right: 0;
         margin-bottom: 10px;
     }
