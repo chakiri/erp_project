@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% if editMode %}Edit Order{% else %}New Order{% endif %}
+{% endblock %}
+
+{% block body %}
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="row m-t-25">
+                <div class="col-lg-10">
+                    <div class="card">
+                        <div class="card-header">
+                            {% if editMode %}
+                                <strong>Edit</strong> Order
+                            {% else %}
+                                <strong>New</strong> Order
+                            {% endif %}
+                        </div>
+                        {{ form_start(formOrder, {'attr': {'class': 'form-horizontal'}}) }}
+                        <div class="card-body card-block">
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    {{ form_label(formOrder.reference)}}
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    {{ form_widget(formOrder.reference, {'attr': {'class': 'form-control', 'readonly': 'true'}}) }}
+                                    <small class="form-text text-muted">Reference generated automatically</small>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    {{ form_label(formOrder.product) }}
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    {{ form_widget(formOrder.product, {'id' : 'select', 'attr' : {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    {{ form_label(formOrder.customer) }}
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    {{ form_widget(formOrder.customer, {'id' : 'select', 'attr' : {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-md-3">
+                                    {{ form_label(formOrder.state) }}
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    {{ form_widget(formOrder.state, {'attr' : {'class': 'form-control'}}) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary btn-sm">
+                                <i class="fa fa-dot-circle-o"></i> Submit
+                            </button>
+                            <button type="reset" class="btn btn-danger btn-sm">
+                                <i class="fa fa-ban"></i> Reset
+                            </button>
+                        </div>
+                        {{ form_end(formOrder) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

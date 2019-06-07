@@ -80,7 +80,7 @@ class Product
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="products")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $createdBy;
 
@@ -104,6 +104,15 @@ class Product
     {
         $this->createdAt = New \DateTime('now');
         $this->isDeleted = false;
+    }
+
+    /**
+     * toString
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName();
     }
 
     public function getId(): ?int

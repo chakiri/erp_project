@@ -15,3 +15,4 @@ console.log('Hello from MyERP! ');
 
 // Include js fields of the app
 require('../js/user.js');
+require('../js/form.js');

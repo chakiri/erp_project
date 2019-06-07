@@ -2,8 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\Order;
+use App\Form\OrderType;
 use App\Repository\OrderRepository;
+
+use App\Service\CodeGenerator;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -22,6 +28,37 @@ class OrderController extends AbstractController
 
         return $this->render('order/index.html.twig', [
             'orders' => $orders
+        ]);
+    }
+
+    /**
+     * @Route("/new", name="order_new")
+     * @Route("/edit/{id}", name="order_edit")
+     */
+    public function form(Order $order = null, Request $request, ObjectManager $manager, CodeGenerator $codeGenerator)
+    {
+        if (!$order){
+            $order = new Order();
+
+            $order->setReference($codeGenerator->getCode(10));
+        }
+
+        $form = $this->createForm(OrderType::class, $order);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+
+            $manager->persist($order);
+
+            $manager->flush();
+
+            return $this->redirectToRoute("order_index");
+        }
+
+        return $this->render("order/form.html.twig", [
+            "formOrder" => $form->createView(),
+            "editMode" => $order->getId() !== null
         ]);
     }
 }

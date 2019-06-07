@@ -25,17 +25,12 @@ class Order
     private $reference;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="datetime", nullable=false)
      */
     private $dateOrder;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $payement;
-
-    /**
-     * @ORM\Column(type="string", length=50, nullable=true)
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $state;
 
@@ -56,6 +51,7 @@ class Order
     public function __construct()
     {
         $this->product = new ArrayCollection();
+        $this->dateOrder = new \DateTime('now');
     }
 
     public function getId(): ?int
@@ -83,18 +79,6 @@ class Order
     public function setDateOrder(string $dateOrder): self
     {
         $this->dateOrder = $dateOrder;
-
-        return $this;
-    }
-
-    public function getPayement(): ?string
-    {
-        return $this->payement;
-    }
-
-    public function setPayement(?string $payement): self
-    {
-        $this->payement = $payement;
 
         return $this;
     }

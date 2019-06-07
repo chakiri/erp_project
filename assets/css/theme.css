@@ -1221,7 +1221,7 @@ section {
 
 @media (max-width: 991px) {
     .logo {
-        text-align: center;
+        text-align: left;
     }
 }
 
@@ -4469,7 +4469,8 @@ section {
 
 @media (min-width: 1200px) {
     .table-responsive-data2 {
-        overflow: visible;
+        /*overflow: visible;*/
+        overflow-x: auto;
     }
 }
 
