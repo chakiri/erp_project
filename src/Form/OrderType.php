@@ -8,6 +8,7 @@ use App\Entity\Product;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -25,9 +26,12 @@ class OrderType extends AbstractType
                 'multiple' => false,
                 'expanded' => false
             ])
-            ->add('product', EntityType::class, [
-                'class' => Product::class,
-                'multiple' => true,
+            ->add('ordersHasProducts', CollectionType::class, [
+                'entry_type' => OrdersHasProductsType::class,
+                'entry_options' => ['label' => false],
+                'by_reference' => false,
+                'allow_add' => true,
+                'label' => 'Products'
             ])
             ->add('customer', EntityType::class, [
                 'class' => Customer::class

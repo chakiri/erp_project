@@ -30,10 +30,10 @@
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3">
-                                    {{ form_label(formOrder.product) }}
+                                    {{ form_label(formOrder.ordersHasProducts) }}
                                 </div>
-                                <div class="col-12 col-md-9">
-                                    {{ form_widget(formOrder.product, {'id' : 'select', 'attr' : {'class': 'form-control'}}) }}
+                                <div class="col-12 col-md-9 products" data-prototype="{{ form_widget(formOrder.ordersHasProducts.vars.prototype)|e('html_attr') }}">
+                                    {{ form_widget(formOrder.ordersHasProducts) }}
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -69,5 +69,9 @@
         </div>
     </div>
 
+{% endblock %}
 
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('build/newProductPrototype.js') }}"></script>
 {% endblock %}

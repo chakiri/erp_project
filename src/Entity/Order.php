@@ -41,16 +41,13 @@ class Order
     private $customer;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Product", inversedBy="orders")
-     * @ORM\JoinColumn(nullable=false, onDelete="SET NULL")
-     * @ORM\JoinTable(name="orders_has_products")
+     * @ORM\OneToMany(targetEntity="App\Entity\OrdersHasProducts", mappedBy="order", cascade={"all"}, orphanRemoval=true)
      */
-    private $product;
-
+    private $ordersHasProducts;
 
     public function __construct()
     {
-        $this->product = new ArrayCollection();
+        $this->ordersHasProducts = new ArrayCollection();
         $this->dateOrder = new \DateTime('now');
     }
 
@@ -108,28 +105,30 @@ class Order
     }
 
     /**
-     * @return Collection|Product[]
+     * @return mixed
      */
-    public function getProduct(): Collection
+    public function getOrdersHasProducts()
     {
-        return $this->product;
+        return $this->ordersHasProducts;
     }
 
-    public function addProduct(Product $product): self
+    /**
+     * @param mixed $ordersHasProducts
+     */
+    public function setOrdersHasProducts($ordersHasProducts)
     {
-        if (!$this->product->contains($product)) {
-            $this->product[] = $product;
-        }
-
-        return $this;
+        $this->ordersHasProducts = $ordersHasProducts;
     }
 
-    public function removeProduct(Product $product): self
+    public function addOrdersHasProducts(OrdersHasProducts $ordersHasProducts)
     {
-        if ($this->product->contains($product)) {
-            $this->product->removeElement($product);
+        if (!$this->ordersHasProducts->contains($ordersHasProducts)) {
+            $this->ordersHasProducts->add($ordersHasProducts);
         }
+    }
 
-        return $this;
+    public function removeOrdersHasProducts(OrdersHasProducts $ordersHasProducts)
+    {
+        // ...
     }
 }

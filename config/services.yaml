@@ -30,3 +30,4 @@ services:
     App\EventListener\ImageCacheSubscriber:
         tags:
             - { name: doctrine.event_subscriber}
+

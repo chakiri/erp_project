@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -63,12 +65,6 @@ class Product
     private $provider;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Order", mappedBy="product", orphanRemoval=true)
-     * @ORM\JoinColumn(onDelete="SET NULL")
-     */
-    private $orders;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
@@ -100,10 +96,16 @@ class Product
      */
     private $price;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\OrdersHasProducts", mappedBy="product")
+     */
+    private $ordersHasProducts;
+
     public function __construct()
     {
         $this->createdAt = New \DateTime('now');
         $this->isDeleted = false;
+        $this->ordersHasProducts = new ArrayCollection();
     }
 
     /**
@@ -178,22 +180,6 @@ class Product
         $this->provider = $provider;
 
         return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getOrders()
-    {
-        return $this->orders;
-    }
-
-    /**
-     * @param mixed $orders
-     */
-    public function setOrders($orders)
-    {
-        $this->orders = $orders;
     }
 
     /**
@@ -299,6 +285,37 @@ class Product
     public function setPrice($price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|OrdersHasProducts[]
+     */
+    public function getOrdersHasProducts(): Collection
+    {
+        return $this->ordersHasProducts;
+    }
+
+    public function addOrdersHasProduct(OrdersHasProducts $ordersHasProduct): self
+    {
+        if (!$this->ordersHasProducts->contains($ordersHasProduct)) {
+            $this->ordersHasProducts[] = $ordersHasProduct;
+            $ordersHasProduct->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrdersHasProduct(OrdersHasProducts $ordersHasProduct): self
+    {
+        if ($this->ordersHasProducts->contains($ordersHasProduct)) {
+            $this->ordersHasProducts->removeElement($ordersHasProduct);
+            // set the owning side to null (unless already changed)
+            if ($ordersHasProduct->getProduct() === $this) {
+                $ordersHasProduct->setProduct(null);
+            }
+        }
 
         return $this;
     }
