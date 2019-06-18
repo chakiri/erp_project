@@ -97,15 +97,15 @@ class Product
     private $price;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\OrdersHasProducts", mappedBy="product")
+     * @ORM\OneToMany(targetEntity="App\Entity\OrderItem", mappedBy="product")
      */
-    private $ordersHasProducts;
+    private $orderItem;
 
     public function __construct()
     {
         $this->createdAt = New \DateTime('now');
         $this->isDeleted = false;
-        $this->ordersHasProducts = new ArrayCollection();
+        $this->orderItem = new ArrayCollection();
     }
 
     /**
@@ -290,30 +290,30 @@ class Product
     }
 
     /**
-     * @return Collection|OrdersHasProducts[]
+     * @return Collection|OrderItem[]
      */
-    public function getOrdersHasProducts(): Collection
+    public function getOrderItem(): Collection
     {
-        return $this->ordersHasProducts;
+        return $this->orderItem;
     }
 
-    public function addOrdersHasProduct(OrdersHasProducts $ordersHasProduct): self
+    public function addOrderItem(OrderItem $orderItem): self
     {
-        if (!$this->ordersHasProducts->contains($ordersHasProduct)) {
-            $this->ordersHasProducts[] = $ordersHasProduct;
-            $ordersHasProduct->setProduct($this);
+        if (!$this->orderItem->contains($orderItem)) {
+            $this->orderItem[] = $orderItem;
+            $orderItem->setProduct($this);
         }
 
         return $this;
     }
 
-    public function removeOrdersHasProduct(OrdersHasProducts $ordersHasProduct): self
+    public function removeOrderItem(OrderItem $orderItem): self
     {
-        if ($this->ordersHasProducts->contains($ordersHasProduct)) {
-            $this->ordersHasProducts->removeElement($ordersHasProduct);
+        if ($this->orderItem->contains($orderItem)) {
+            $this->orderItem->removeElement($orderItem);
             // set the owning side to null (unless already changed)
-            if ($ordersHasProduct->getProduct() === $this) {
-                $ordersHasProduct->setProduct(null);
+            if ($orderItem->getProduct() === $this) {
+                $orderItem->setProduct(null);
             }
         }
 

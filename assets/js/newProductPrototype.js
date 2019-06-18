@@ -1,7 +1,7 @@
 var $collectionHolder;
 
 // setup an "add a tag" link
-var $addProductButton = $('<button type="button" class="add_product_link">Add a product</button>');
+var $addProductButton = $('<a href="#" class="add_product_link float-right">Add a product</a>');
 var $newLinkLi = $('<div class=""></div>').append($addProductButton);
 
 jQuery(document).ready(function() {

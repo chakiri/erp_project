@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% import _self as formMacroPrototype %}
+
 {% block title %}
     {% if editMode %}Edit Order{% else %}New Order{% endif %}
 {% endblock %}
@@ -30,10 +32,12 @@
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3">
-                                    {{ form_label(formOrder.ordersHasProducts) }}
+                                    {{ form_label(formOrder.orderItems) }}
                                 </div>
-                                <div class="col-12 col-md-9 products" data-prototype="{{ form_widget(formOrder.ordersHasProducts.vars.prototype)|e('html_attr') }}">
-                                    {{ form_widget(formOrder.ordersHasProducts) }}
+                                <div class="col-12 col-md-9 products" data-prototype="{{ formMacroPrototype.orderItemRow(formOrder.orderItems.vars.prototype)|e('html_attr') }}">
+                                    {% for orderItem in formOrder.orderItems %}
+                                        {{ formMacroPrototype.orderItemRow(orderItem) }}
+                                    {% endfor %}
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -54,6 +58,8 @@
                             </div>
                         </div>
 
+                        {{ form_widget(formOrder.orderItems) }}  {# cette ligne ne fait rien mais evite le render automatique avant le form_end #}
+
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary btn-sm">
                                 <i class="fa fa-dot-circle-o"></i> Submit
@@ -70,6 +76,20 @@
     </div>
 
 {% endblock %}
+
+{% macro orderItemRow(orderItem) %}
+    <a href="#" class="js-remove-order-item float-right">
+        <span class="fa fa-close"></span>
+    </a>
+    <div class="row m-b-10">
+        <div class="col-12 col-md-8">
+            {{ form_widget(orderItem.product) }}
+        </div>
+        <div class="col-12 col-md-4">
+            {{ form_widget(orderItem.quantity) }}
+        </div>
+    </div>
+{% endmacro %}
 
 
 {% block javascripts %}

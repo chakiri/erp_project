@@ -26,8 +26,8 @@ class OrderType extends AbstractType
                 'multiple' => false,
                 'expanded' => false
             ])
-            ->add('ordersHasProducts', CollectionType::class, [
-                'entry_type' => OrdersHasProductsType::class,
+            ->add('orderItems', CollectionType::class, [
+                'entry_type' => OrderItemType::class,
                 'entry_options' => ['label' => false],
                 'by_reference' => false,
                 'allow_add' => true,

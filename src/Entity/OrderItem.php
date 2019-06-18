@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OrdersHasProductsRepository")
  */
-class OrdersHasProducts
+class OrderItem
 {
     /**
      * @ORM\Id()
@@ -17,14 +17,14 @@ class OrdersHasProducts
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="ordersHasProducts")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", onDelete="SET NULL", nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="orderItems")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $product;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Order", inversedBy="ordersHasProducts", cascade={"persist"})
-     * @ORM\JoinColumn(name="order_id", referencedColumnName="id", onDelete="CASCADE", nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Order", inversedBy="orderItems", cascade={"persist"})
+     * @ORM\JoinColumn(onDelete="CASCADE", nullable=false)
      */
     private $order;
 
