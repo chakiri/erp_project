@@ -28,11 +28,16 @@ class OrderType extends AbstractType
             ])
             ->add('orderItems', CollectionType::class, [
                 'entry_type' => OrderItemType::class,
-                'entry_options' => ['label' => false],
+                'entry_options' => [
+                    'label' => false,
+                    'required' => true,
+                ],
                 'by_reference' => false,
                 'allow_add' => true,
                 'allow_delete' => true,
-                'label' => 'Products'
+                'label' => 'Products',
+                'prototype'      => true,
+
             ])
             ->add('customer', EntityType::class, [
                 'class' => Customer::class

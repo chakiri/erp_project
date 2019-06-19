@@ -18,13 +18,15 @@ class OrderItemType extends AbstractType
             ->add('product', EntityType::class, [
                 'class' => Product::class,
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'required' => true
                 ]
             ])
             ->add('quantity',null, [
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Quantity'
+                    'placeholder' => 'Quantity',
+                    'required' => true
                 ]
             ])
         ;

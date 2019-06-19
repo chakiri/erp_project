@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\OrdersHasProductsRepository")
@@ -19,6 +20,7 @@ class OrderItem
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Product", inversedBy="orderItems")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank()
      */
     private $product;
 
@@ -30,6 +32,7 @@ class OrderItem
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
      */
     private $quantity;
 

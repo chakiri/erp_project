@@ -15,7 +15,11 @@ jQuery(document).ready(function() {
     // index when inserting a new item (e.g. 2)
     $collectionHolder.data('index', $collectionHolder.find(':input').length);
 
+    //add new empty product form
+    addProductForm($collectionHolder, $newLinkLi);
+
     $addProductButton.on('click', function(e) {
+        e.preventDefault();
         // add a new tag form (see next code block)
         addProductForm($collectionHolder, $newLinkLi);
     });
@@ -42,7 +46,7 @@ function addProductForm($collectionHolder, $newLinkLi) {
     $collectionHolder.data('index', index + 1);
 
     // Display the form in the page in an li, before the "Add a tag" link li
-    var $newFormLi = $('<div class="product-form"></div>').append(newForm);
+    var $newFormLi = $('<div></div>').append(newForm);
     $newLinkLi.before($newFormLi);
 
     // delete link to the new form
@@ -71,3 +75,10 @@ function deleteProductForm($productFormLi) {
         $productFormLi.remove();
     });
 }
+
+// --------- Disable removeFormLink to the first row ----------
+jQuery(document).ready(function () {
+    $collectionHolder = $('.products');
+
+    $collectionHolder.find('.product-form:first a').remove();
+});

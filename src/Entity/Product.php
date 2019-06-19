@@ -99,13 +99,13 @@ class Product
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\OrderItem", mappedBy="product")
      */
-    private $orderItem;
+    private $orderItems;
 
     public function __construct()
     {
         $this->createdAt = New \DateTime('now');
         $this->isDeleted = false;
-        $this->orderItem = new ArrayCollection();
+        $this->orderItems = new ArrayCollection();
     }
 
     /**
@@ -292,28 +292,28 @@ class Product
     /**
      * @return Collection|OrderItem[]
      */
-    public function getOrderItem(): Collection
+    public function getOrderItems(): Collection
     {
-        return $this->orderItem;
+        return $this->orderItems;
     }
 
-    public function addOrderItem(OrderItem $orderItem): self
+    public function addOrderItem(OrderItem $orderItems): self
     {
-        if (!$this->orderItem->contains($orderItem)) {
-            $this->orderItem[] = $orderItem;
-            $orderItem->setProduct($this);
+        if (!$this->orderItems->contains($orderItems)) {
+            $this->orderItems[] = $orderItems;
+            $orderItems->setProduct($this);
         }
 
         return $this;
     }
 
-    public function removeOrderItem(OrderItem $orderItem): self
+    public function removeOrderItem(OrderItem $orderItems): self
     {
-        if ($this->orderItem->contains($orderItem)) {
-            $this->orderItem->removeElement($orderItem);
+        if ($this->orderItems->contains($orderItems)) {
+            $this->orderItems->removeElement($orderItems);
             // set the owning side to null (unless already changed)
-            if ($orderItem->getProduct() === $this) {
-                $orderItem->setProduct(null);
+            if ($orderItems->getProduct() === $this) {
+                $orderItems->setProduct(null);
             }
         }
 
