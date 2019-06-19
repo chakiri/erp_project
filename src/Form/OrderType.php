@@ -31,6 +31,7 @@ class OrderType extends AbstractType
                 'entry_options' => ['label' => false],
                 'by_reference' => false,
                 'allow_add' => true,
+                'allow_delete' => true,
                 'label' => 'Products'
             ])
             ->add('customer', EntityType::class, [

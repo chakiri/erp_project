@@ -42,6 +42,32 @@ function addProductForm($collectionHolder, $newLinkLi) {
     $collectionHolder.data('index', index + 1);
 
     // Display the form in the page in an li, before the "Add a tag" link li
-    var $newFormLi = $('<div></div>').append(newForm);
+    var $newFormLi = $('<div class="product-form"></div>').append(newForm);
     $newLinkLi.before($newFormLi);
+
+    // delete link to the new form
+    deleteProductForm($newFormLi);
+}
+
+// ------------ Delete Product ----------------
+
+jQuery(document).ready(function () {
+    // Get the ul that holds the collection of tags
+    $collectionHolder = $('.products');
+
+    // add a delete link to all of the existing tag form li elements
+    $collectionHolder.find('.product-form').each(function() {
+        deleteProductForm($(this));
+    });
+});
+
+function deleteProductForm($productFormLi) {
+
+    var $removeFormLink = $productFormLi.find('.js-remove-form-product');
+
+    $removeFormLink.on('click', function (e){
+        e.preventDefault();
+        // remove the li for the product form
+        $productFormLi.remove();
+    });
 }

@@ -78,7 +78,7 @@
 {% endblock %}
 
 {% macro orderItemRow(orderItem) %}
-    <a href="#" class="js-remove-order-item float-right">
+    <a href="#" class="js-remove-form-product float-right">
         <span class="fa fa-close"></span>
     </a>
     <div class="row m-b-10">
@@ -93,5 +93,5 @@
 
 
 {% block javascripts %}
-    <script type="text/javascript" src="{{ asset('build/newProductPrototype.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('build/orderProductsPrototype.js') }}"></script>
 {% endblock %}

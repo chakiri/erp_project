@@ -114,7 +114,7 @@ class Order
     }
 
     /**
-     * @param mixed $orderItem
+     * @param mixed $orderItems
      */
     public function setOrderItems($orderItems)
     {

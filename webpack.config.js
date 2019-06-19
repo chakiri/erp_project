@@ -21,7 +21,7 @@ Encore
     .addEntry('app', './assets/js/app.js')
     .addEntry('vendor', './assets/js/vendor.js')
     .addEntry('main', './assets/js/main.js')
-    .addEntry('newProductPrototype', './assets/js/newProductPrototype.js')
+    .addEntry('orderProductsPrototype', './assets/js/orderProductsPrototype.js')
 
     .addStyleEntry('theme', './assets/css/theme.css')
     .addStyleEntry('font-face', './assets/css/font-face.css')
