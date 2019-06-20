@@ -15,8 +15,10 @@ jQuery(document).ready(function() {
     // index when inserting a new item (e.g. 2)
     $collectionHolder.data('index', $collectionHolder.find(':input').length);
 
-    //add new empty product form
-    addProductForm($collectionHolder, $newLinkLi);
+    if ($collectionHolder.find(':input').length === 0){
+        //add new empty product form
+        addProductForm($collectionHolder, $newLinkLi);
+    }
 
     $addProductButton.on('click', function(e) {
         e.preventDefault();

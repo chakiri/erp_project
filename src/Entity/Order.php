@@ -70,12 +70,12 @@ class Order
         return $this;
     }
 
-    public function getDateOrder(): ?string
+    public function getDateOrder(): ?\DateTime
     {
         return $this->dateOrder;
     }
 
-    public function setDateOrder(string $dateOrder): self
+    public function setDateOrder(\DateTime $dateOrder): self
     {
         $this->dateOrder = $dateOrder;
 

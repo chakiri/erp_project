@@ -32,8 +32,8 @@
                                 <i class="zmdi zmdi-filter-list"></i>filters</button>
                         </div>
                         <div class="table-data__tool-right">
-                            <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                <i class="zmdi zmdi-plus"></i>add item</button>
+                            <a href="{{ path('order_new') }}" class="au-btn au-btn-icon au-btn--green au-btn--small">
+                                <i class="zmdi zmdi-plus"></i>new order</a>
                             <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
                                 <select class="js-select2" name="type">
                                     <option selected="selected">Export</option>
@@ -73,14 +73,22 @@
                                             <span class="au-checkmark"></span>
                                         </label>
                                     </td>
-                                    <td>Lori Lynch</td>
+                                    <td>{{ order.reference }}</td>
                                     <td>
-                                        <span class="block-email">lori@example.com</span>
+                                        <span class="block-email">{{ order.customer }}</span>
                                     </td>
-                                    <td class="desc">Samsung S8 Black</td>
-                                    <td>2018-09-27 02:12</td>
+                                    <td class="desc">
+                                        <div class="overflow">
+                                            {% for orderItem in order.orderItems %}
+                                                <a href="{{ path('product_show', {'id': orderItem.product.id}) }}">{{ orderItem.product }}</a>
+                                            {% endfor %}
+                                        </div>
+                                    </td>
+                                    <td>{{ order.dateOrder|date('d-M-Y')  }}</td>
                                     <td>
-                                        <span class="status--process">Processed</span>
+                                        {% if order.state == true %}<span class="status--process">Processed</span>
+                                        {% else %} <span class="status--denied">Denied</span>
+                                        {% endif %}
                                     </td>
                                     <td>$679.00</td>
                                     <td>
