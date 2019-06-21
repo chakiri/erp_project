@@ -24,7 +24,7 @@ class OrderController extends AbstractController
      */
     public function index(OrderRepository $orderRepository)
     {
-        $orders = $orderRepository->findAll();
+        $orders = $orderRepository->findBy(['isDeleted' => false]);
 
         return $this->render('order/index.html.twig', [
             'orders' => $orders
@@ -74,5 +74,25 @@ class OrderController extends AbstractController
         return $this->render('order/show.html.twig', [
             'order' => $order
         ]);
+    }
+
+    /**
+     * @Route("/delete/{id}", name="order_delete")
+     */
+    public function delete(ObjectManager $manager, Order $order)
+    {
+        if ($order){
+            $order->setIsDeleted(true);
+
+            $manager->persist($order);
+
+            $manager->flush();
+
+            $this->addFlash('success', 'The order has been removed !');
+        }else{
+            $this->addFlash('error', ' !');
+        }
+
+        return $this->redirectToRoute('order_index');
     }
 }

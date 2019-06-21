@@ -47,10 +47,16 @@ class Order
      */
     private $orderItems;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isDeleted;
+
     public function __construct()
     {
         $this->orderItems = new ArrayCollection();
         $this->dateOrder = new \DateTime('now');
+        $this->isDeleted = false;
     }
 
     public function getId(): ?int
@@ -142,5 +148,17 @@ class Order
     public function getOrderItemsCount()
     {
         return $this->orderItems->count();
+    }
+
+    public function getIsDeleted(): ?bool
+    {
+        return $this->isDeleted;
+    }
+
+    public function setIsDeleted(bool $isDeleted): self
+    {
+        $this->isDeleted = $isDeleted;
+
+        return $this;
     }
 }
