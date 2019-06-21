@@ -19,3 +19,17 @@
 .card-body .rounded-circle{
     width: 170px;
 }
+
+.hr{
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.hr::before,
+.hr::after {
+    border-top: .0625em solid;
+    content: "";
+    flex: 1;
+    margin: 0 .5em;
+}

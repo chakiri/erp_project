@@ -80,7 +80,7 @@
                                     <td class="desc">
                                         <div class="overflow">
                                             {% for orderItem in order.orderItems %}
-                                                <a href="{{ path('product_show', {'id': orderItem.product.id}) }}">{{ orderItem.product }}</a>
+                                                <a href="{{ path('product_show', {'id': orderItem.product.id}) }}">{{ orderItem.product|striptags|slice(0, 20) }}...</a>
                                             {% endfor %}
                                         </div>
                                     </td>

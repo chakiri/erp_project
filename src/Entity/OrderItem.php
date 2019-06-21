@@ -36,6 +36,11 @@ class OrderItem
      */
     private $quantity;
 
+    /**
+     * @ORM\Column(type="decimal", precision=10, scale=2, nullable=true)
+     */
+    private $price;
+
     public function __construct(Order $order)
     {
         $this->setOrder($order);
@@ -82,6 +87,18 @@ class OrderItem
     public function setQuantity(?int $quantity): self
     {
         $this->quantity = $quantity;
+
+        return $this;
+    }
+
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    public function setPrice($price): self
+    {
+        $this->price = $price;
 
         return $this;
     }

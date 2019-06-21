@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Order {{ order.reference }}{% endblock %}
+
+{% block body %}
+
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-10 ">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mx-auto d-block">
+                                <div class="mt-3 text-right location">
+                                    <h5 class=" mt-4 mb-1">Order N° {{ order.reference }}</h5>
+                                    <p class="blockquote">Date : {{ order.dateOrder |date('d-m-Y') }}</p>
+                                    {% if order.state == true %}<span class="status--process">Processed</span>
+                                    {% else %} <span class="status--denied">Denied</span>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-8 offset-md-2 hr">
+                                    <b>Customer : {{ order.customer }}</b>
+                                </div>
+                            </div>
+
+                            <table class="table table-bordered m-t-30 m-b-30">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Product</th>
+                                        <th scope="col">Reference</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% set total_price_order = 0 %}
+                                    {% for orderItem in order.orderItems %}
+                                        <tr>
+                                            <td>{{ orderItem.product.name }}</td>
+                                            <td>{{ orderItem.product.reference }}</td>
+                                            <td>{{ orderItem.product.price }}€</td>
+                                            <td>{{ orderItem.quantity }}</td>
+                                            <td>{{ orderItem.price }}€</td>
+                                        </tr>
+                                        {% set total_price_order = total_price_order + orderItem.price %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <div class="blockquote mt-3 text-right location">
+                                <p>Total : {{ total_price_order }}€</p>
+                            </div>
+
+                            <hr>
+                            <div class="card-text text-sm-center">
+                                <a href="{{ path('order_edit', {'id': order.id}) }}" class="btn btn-link"><i class="fas fa-pencil-square-o"></i> Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

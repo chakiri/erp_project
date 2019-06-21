@@ -49,16 +49,30 @@ class OrderController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()){
 
+            foreach($order->getOrderItems() as $orderItem){
+                $orderItem->setPrice($orderItem->getProduct()->getPrice() * $orderItem->getQuantity());
+            }
+
             $manager->persist($order);
 
             $manager->flush();
 
-            return $this->redirectToRoute("order_index");
+            return $this->redirectToRoute("order_show", ['id' => $order->getId()]);
         }
 
         return $this->render("order/form.html.twig", [
             "formOrder" => $form->createView(),
             "editMode" => $order->getId() !== null
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="order_show")
+     */
+    public function show(Order $order)
+    {
+        return $this->render('order/show.html.twig', [
+            'order' => $order
         ]);
     }
 }
