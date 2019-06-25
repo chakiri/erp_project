@@ -9,6 +9,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 
 /**
@@ -21,9 +22,13 @@ class ProductController extends AbstractController
     /**
      * @Route("/", name="product_ index")
      */
-    public function index(ProductRepository $repository)
+    public function index(Request $request, ProductRepository $repository, PaginatorInterface $paginator)
     {
-        $products = $repository->findBy(['isDeleted' => false]);
+        $products = $paginator->paginate(
+            $repository->findAllNotDeletedQuery(),
+            $request->query->getInt('page', 1),
+            10
+        );
 
         return $this->render('product/index.html.twig', [
             'products' => $products,

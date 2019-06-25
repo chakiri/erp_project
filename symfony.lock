@@ -129,6 +129,12 @@
     "jms/metadata": {
         "version": "1.7.0"
     },
+    "knplabs/knp-components": {
+        "version": "v1.3.10"
+    },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v3.0.0"
+    },
     "liip/imagine-bundle": {
         "version": "1.8",
         "recipe": {

@@ -33,3 +33,21 @@
     flex: 1;
     margin: 0 .5em;
 }
+
+.page-item.active .page-link {
+    background-color: #63c76a;
+    border-color: #59ad5e;
+}
+
+.page-link {
+    color: #808080;
+}
+
+.page-link:hover {
+    color: #ffffff;
+    background-color: #63c76a;
+}
+
+.pagination {
+    font-size: 13px;
+}
