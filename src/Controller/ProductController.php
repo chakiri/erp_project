@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Entity\ProductSearch;
+use App\Form\ProductSearchType;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -24,14 +26,19 @@ class ProductController extends AbstractController
      */
     public function index(Request $request, ProductRepository $repository, PaginatorInterface $paginator)
     {
+        $productSearch = new ProductSearch();
+        $productSearchForm = $this->createForm(ProductSearchType::class, $productSearch);
+        $productSearchForm->handleRequest($request);
+
         $products = $paginator->paginate(
-            $repository->findAllNotDeletedQuery(),
+            $repository->findAllNotDeletedQuery($productSearch),
             $request->query->getInt('page', 1),
             10
         );
 
         return $this->render('product/index.html.twig', [
             'products' => $products,
+            'productSearchForm' => $productSearchForm->createView()
         ]);
     }
 

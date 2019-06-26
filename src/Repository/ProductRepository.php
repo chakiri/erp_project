@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Product;
+use App\Entity\ProductSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -20,47 +21,41 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
-    public function findAllNotDeleted()
-    {
-        return $this->findAllNotDeletedQuery()
-            ->getResult()
-        ;
-    }
 
-    public function findAllNotDeletedQuery(): Query
+    public function findAllNotDeletedQuery(ProductSearch $productSearch): Query
     {
-        return $this->createQueryBuilder('p')
+        $query = $this->createQueryBuilder('p')
             ->where('p.isDeleted = false')
-            ->getQuery()
+        ;
+
+        if ($productSearch->getType()){
+            $query
+                ->andWhere('p.type = :type')
+                ->setParameter('type', $productSearch->getType())
             ;
+        }
+
+        if ($productSearch->isStocked() === true) {
+
+            $query
+                ->andWhere('p.stock != 0');
+        }
+
+        if ($productSearch->isStocked() === false) {
+
+            $query
+                ->andWhere('p.stock = 0');
+        }
+
+        return $query->getQuery();
     }
 
-    // /**
-    //  * @return Product[] Returns an array of Product objects
-    //  */
-    /*
-    public function findByExampleField($value)
+
+
+    public function findAllNotDeleted($productSearch)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
+        return $this->findAllNotDeletedQuery($productSearch)
             ->getResult()
         ;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Product
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

@@ -9,9 +9,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="title-1 m-b-35">Products</h2>
-                    <!-- FILTERS -->
+
                     <div class="table-data__tool">
-                        <div class="table-data__tool-left">
+                        <!-- FILTERS -->
+                        {#<div class="table-data__tool-left">
                             <div class="rs-select2--light rs-select2--md">
                                 <select class="js-select2" name="property">
                                     <option selected="selected">All Properties</option>
@@ -29,7 +30,24 @@
                                 <div class="dropDownSelect2"></div>
                             </div>
                             <button class="au-btn-filter"><i class="zmdi zmdi-filter-list"></i>filters</button>
+                        </div>#}
+                        <div class="table-data__tool-left">
+                            {{ form_start(productSearchForm) }}
+
+                            <div class="rs-select2--light rs-select2--md">
+                                {{ form_widget(productSearchForm.type, {'attr': {'class': 'js-select2'}}) }}
+                            </div>
+
+                            <div class="rs-select2--light rs-select2--sm">
+                                {{ form_widget(productSearchForm.stocked, {'attr': {'class': 'js-select2'}}) }}
+                            </div>
+
+                            <button type="submit" class="au-btn-filter"><i class="zmdi zmdi-filter-list"></i>filters</button>
+                            {{ form_end(productSearchForm) }}
                         </div>
+                        <!-- END FILTERS -->
+
+                        <!-- EXPORT -->
                         <div class="table-data__tool-right">
                             <a href="{{ path('product_new') }}" class="au-btn au-btn-icon au-btn--green au-btn--small">
                                 <i class="zmdi zmdi-plus"></i>add Product</a>
@@ -42,8 +60,9 @@
                                 <div class="dropDownSelect2"></div>
                             </div>
                         </div>
+                        <!-- END EXPORT -->
                     </div>
-                    <!-- END FILTERS -->
+
                     <!-- DATA TABLE-->
                     <div class="table-responsive m-b-40">
                         <table class="table table-borderless table-data3">
@@ -86,7 +105,6 @@
                     <!-- END DATA TABLE-->
                 </div>
             </div>
-
 
             <div class="row">
                 <div class="col-md-4 offset-md-4 mr-auto ml-auto m-b-30">
