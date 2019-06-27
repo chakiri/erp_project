@@ -7,29 +7,33 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 m-b-30">
-                    <!-- DATA TABLE -->
+
                     <h3 class="title-5 m-b-35">List Orders</h3>
+
                     <!-- FILTER -->
                     <div class="table-data__tool">
                         <div class="table-data__tool-left">
-                            <div class="rs-select2--light rs-select2--md">
-                                <select class="js-select2" name="property">
-                                    <option selected="selected">All Properties</option>
-                                    <option value="">Option 1</option>
-                                    <option value="">Option 2</option>
-                                </select>
-                                <div class="dropDownSelect2"></div>
-                            </div>
-                            <div class="rs-select2--light rs-select2--sm">
-                                <select class="js-select2" name="time">
-                                    <option selected="selected">Today</option>
-                                    <option value="">3 Days</option>
-                                    <option value="">1 Week</option>
-                                </select>
-                                <div class="dropDownSelect2"></div>
-                            </div>
-                            <button class="au-btn-filter">
-                                <i class="zmdi zmdi-filter-list"></i>filters</button>
+                            <form action="" method="get">
+                                <div class="rs-select2--light rs-select2--md">
+                                    <select class="js-select2" name="status">
+                                        <option value="">Status</option>
+                                        <option value="1">Processed</option>
+                                        <option value="0">Denied</option>
+                                    </select>
+                                    <div class="dropDownSelect2"></div>
+                                </div>
+                                <div class="rs-select2--light rs-select2--sm">
+                                    <select class="js-select2" name="time">
+                                        <option value="">Time</option>
+                                        <option value="1d">Today</option>
+                                        <option value="3d">3 Days</option>
+                                        <option value="1w">1 Week</option>
+                                        <option value="1m">1 Month</option>
+                                    </select>
+                                    <div class="dropDownSelect2"></div>
+                                </div>
+                                <button type="submit" class="au-btn-filter"><i class="zmdi zmdi-filter-list"></i>filters</button>
+                            </form>
                         </div>
                         <div class="table-data__tool-right">
                             <a href="{{ path('order_new') }}" class="au-btn au-btn-icon au-btn--green au-btn--small">
@@ -45,6 +49,8 @@
                         </div>
                     </div>
                     <!-- END FILTER -->
+
+                    <!-- DATA TABLE -->
                     <div class="table-responsive table-responsive-data2">
                         <table class="table table-data2">
                             <thead>
@@ -118,6 +124,16 @@
                     <!-- END DATA TABLE -->
                 </div>
             </div>
+
+            <!-- PAGINATION -->
+            <div class="row">
+                <div class="col-md-4 offset-md-4 mr-auto ml-auto m-b-30">
+                    <div class="navigation">
+                        {{ knp_pagination_render(orders) }}
+                    </div>
+                </div>
+            </div>
+            <!-- END PAGINATION -->
         </div>
     </div>
 {% endblock %}

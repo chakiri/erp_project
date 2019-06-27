@@ -8,6 +8,7 @@ use App\Repository\OrderRepository;
 
 use App\Service\CodeGenerator;
 use Doctrine\Common\Persistence\ObjectManager;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,9 +23,16 @@ class OrderController extends AbstractController
     /**
      * @Route("/", name="order_index")
      */
-    public function index(OrderRepository $orderRepository)
+    public function index(Request $request, OrderRepository $orderRepository, PaginatorInterface $paginator)
     {
-        $orders = $orderRepository->findBy(['isDeleted' => false]);
+        $statusSearch = $request->get("status");
+        $timeSearch = $request->get("time");
+
+        $orders = $paginator->paginate(
+            $orderRepository->findAllNotDeletedQuery($statusSearch, $timeSearch),
+            $request->query->getInt('page', 1),
+            5
+        );
 
         return $this->render('order/index.html.twig', [
             'orders' => $orders

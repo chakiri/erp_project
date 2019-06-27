@@ -20,9 +20,11 @@ class CustomerController extends AbstractController
     /**
      * @Route("/", name="customer_index")
      */
-    public function index(CustomerRepository $customerRepository)
+    public function index(Request $request, CustomerRepository $customerRepository)
     {
-        $customers = $customerRepository->findAll();
+        $typeSearch = $request->get('type');
+
+        $customers = $customerRepository->findAllNotDeleted($typeSearch);
 
         return $this->render('customer/index.html.twig', [
             'customers' => $customers,

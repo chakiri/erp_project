@@ -19,32 +19,25 @@ class CustomerRepository extends ServiceEntityRepository
         parent::__construct($registry, Customer::class);
     }
 
-    // /**
-    //  * @return Customer[] Returns an array of Customer objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findAllNotDeletedQuery($typeSearch)
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $query = $this->createQueryBuilder('c')
+            ->where('c.isDeleted = 0')
+            ;
 
-    /*
-    public function findOneBySomeField($value): ?Customer
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        if (isset($typeSearch) && $typeSearch != null){
+            $query->andWhere('c.type LIKE :type')
+                ->setParameter('type', $typeSearch)
+            ;
+        }
+
+        return $query->getQuery();
     }
-    */
+
+    public function findAllNotDeleted($typeSearch)
+    {
+        $query = $this->findAllNotDeletedQuery($typeSearch);
+
+        return $query->getResult();
+    }
 }

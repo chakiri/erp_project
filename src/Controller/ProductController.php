@@ -24,14 +24,14 @@ class ProductController extends AbstractController
     /**
      * @Route("/", name="product_ index")
      */
-    public function index(Request $request, ProductRepository $repository, PaginatorInterface $paginator)
+    public function index(Request $request, ProductRepository $productRepository, PaginatorInterface $paginator)
     {
         $productSearch = new ProductSearch();
         $productSearchForm = $this->createForm(ProductSearchType::class, $productSearch);
         $productSearchForm->handleRequest($request);
 
         $products = $paginator->paginate(
-            $repository->findAllNotDeletedQuery($productSearch),
+            $productRepository->findAllNotDeletedQuery($productSearch),
             $request->query->getInt('page', 1),
             10
         );

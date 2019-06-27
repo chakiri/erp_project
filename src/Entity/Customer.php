@@ -68,9 +68,15 @@ class Customer
      */
     private $phone;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $isDeleted;
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
+        $this->isDeleted = 0;
     }
 
     /**
@@ -222,6 +228,18 @@ class Customer
     public function setPhone(?string $phone): self
     {
         $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getIsDeleted(): ?bool
+    {
+        return $this->isDeleted;
+    }
+
+    public function setIsDeleted(?bool $isDeleted): self
+    {
+        $this->isDeleted = $isDeleted;
 
         return $this;
     }

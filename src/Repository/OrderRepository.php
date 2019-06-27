@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Order;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -19,32 +20,41 @@ class OrderRepository extends ServiceEntityRepository
         parent::__construct($registry, Order::class);
     }
 
-    // /**
-    //  * @return Order[] Returns an array of Order objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findAllNotDeletedQuery($statusSearch, $timeSearch): Query
     {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('o.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
+        $query = $this->createQueryBuilder('p')
+            ->where('p.isDeleted = false')
         ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Order
-    {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        if (isset($statusSearch) && $statusSearch != null){
+            $query
+                ->andWhere('p.state = :state')
+                ->setParameter('state', $statusSearch)
+            ;
+        }
+
+        if ($timeSearch){
+            switch ($timeSearch){
+                case '1d' :
+                    $time = date("Y-m-d", strtotime("-1 days"));;
+                    break;
+                case '3d' :
+                    $time = date("Y-m-d", strtotime("-3 days"));;
+                    break;
+                case '1w' :
+                    $time = date("Y-m-d", strtotime("-1 week"));;
+                    break;
+                case '1m' :
+                    $time = date("Y-m-d", strtotime("-1 month"));;
+                    break;
+            }
+
+            $query
+                ->andWhere('p.dateOrder >= :time')
+                ->setParameter('time', $time)
+            ;
+        }
+
+        return $query->getQuery();
     }
-    */
 }
