@@ -10,6 +10,7 @@ use App\Repository\ProductRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -107,5 +108,45 @@ class ProductController extends AbstractController
         }
 
         return $this->redirectToRoute('product_ index');
+    }
+
+    /**
+     * @Route("/export/csv", name="product_export")
+     */
+    public function exportCsv(ProductRepository $productRepository)
+    {
+        $response = new StreamedResponse();
+
+        $response->setCallback(function () use ($productRepository) {
+
+            $handle = fopen('php://output', 'w+');
+
+            fputcsv($handle, ['Reference', 'Name', 'Description', 'Stock', 'provider', 'type', 'createdAt', 'isDeleted', 'price'], ';');
+
+            $results = $productRepository->findAllNotDeleted();
+
+            foreach($results as $result){
+                fputcsv($handle, [
+                    $result->getReference(),
+                    $result->getName(),
+                    $result->getDescription(),
+                    $result->getStock(),
+                    $result->getProvider(),
+                    $result->getType(),
+                    $result->getCreatedAt()->format('d-m-Y H:i:s'),
+                    $result->getIsDeleted(),
+                    $result->getPrice(),
+                ], ';');
+            }
+
+            fclose($handle);
+        });
+
+        $response->setStatusCode(200);
+        $response->headers->set('Content-Type', 'text/csv; charset=utf-8');
+        $response->headers->set('Content-Disposition','attachment; filename="export-products.csv"');
+
+        return $response;
+
     }
 }

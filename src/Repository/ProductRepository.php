@@ -23,29 +23,31 @@ class ProductRepository extends ServiceEntityRepository
 
 
     //This method return juste query is required for pagination
-    public function findAllNotDeletedQuery(ProductSearch $productSearch): Query
+    public function findAllNotDeletedQuery(?ProductSearch $productSearch): Query
     {
         $query = $this->createQueryBuilder('p')
             ->where('p.isDeleted = false')
         ;
 
-        if ($productSearch->getType()){
-            $query
-                ->andWhere('p.type = :type')
-                ->setParameter('type', $productSearch->getType())
-            ;
-        }
+        if ($productSearch != null){
+            if ($productSearch->getType()){
+                $query
+                    ->andWhere('p.type = :type')
+                    ->setParameter('type', $productSearch->getType())
+                ;
+            }
 
-        if ($productSearch->isStocked() === true) {
+            if ($productSearch->isStocked() === true) {
 
-            $query
-                ->andWhere('p.stock != 0');
-        }
+                $query
+                    ->andWhere('p.stock != 0');
+            }
 
-        if ($productSearch->isStocked() === false) {
+            if ($productSearch->isStocked() === false) {
 
-            $query
-                ->andWhere('p.stock = 0');
+                $query
+                    ->andWhere('p.stock = 0');
+            }
         }
 
         return $query->getQuery();
@@ -53,7 +55,7 @@ class ProductRepository extends ServiceEntityRepository
 
 
 
-    public function findAllNotDeleted($productSearch)
+    public function findAllNotDeleted($productSearch = null)
     {
         return $this->findAllNotDeletedQuery($productSearch)
             ->getResult()

@@ -21,14 +21,6 @@
                             {{ form_start(formProduct, {'attr': {'class': 'form-horizontal'}}) }}
                                 <div class="row form-group">
                                     <div class="col col-md-3">
-                                        <label class=" form-control-label">User</label>
-                                    </div>
-                                    <div class="col-12 col-md-9">
-                                        <p class="form-control-static">{{ form_widget(formProduct.createdBy, {'id' : 'disabledSelect', 'attr' : {'class': 'form-control', 'disabled': ''}}) }}</p>
-                                    </div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-3">
                                         {{ form_label(formProduct.reference)}}
                                     </div>
                                     <div class="col-12 col-md-9">

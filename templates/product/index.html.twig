@@ -52,10 +52,9 @@
                             <a href="{{ path('product_new') }}" class="au-btn au-btn-icon au-btn--green au-btn--small">
                                 <i class="zmdi zmdi-plus"></i>add Product</a>
                             <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
-                                <select class="js-select2" name="type">
+                                <select class="js-select2" name="export" onchange="location = this.value;">
                                     <option selected="selected">Export</option>
-                                    <option value="">Option 1</option>
-                                    <option value="">Option 2</option>
+                                    <option value="{{ path('product_export') }}">CSV</option>
                                 </select>
                                 <div class="dropDownSelect2"></div>
                             </div>
@@ -86,15 +85,17 @@
                                     <td {% if product.stock == 0 %}class="denied">Empty{% else %}<td class="process">{{ product.stock }}{% endif %}</td>
                                     <td>
                                         <div class="table-data-feature">
-                                            <a href="{{ path('product_edit', {'id' : product.id}) }}" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                <i class="zmdi zmdi-edit"></i>
-                                            </a>
-                                            <a href="{{ path('product_delete', {'id' : product.id}) }}" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                <i class="zmdi zmdi-delete"></i>
-                                            </a>
                                             <a href="{{ path('product_show', {'id' : product.id}) }}" class="item" data-toggle="tooltip" data-placement="top" title="More">
                                                 <i class="zmdi zmdi-more"></i>
                                             </a>
+                                            <a href="{{ path('product_edit', {'id' : product.id}) }}" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                <i class="zmdi zmdi-edit"></i>
+                                            </a>
+                                            <div class="confirmDelete" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                <button type="button" class="item" data-url="{{ path('product_delete', {'id': product.id}) }}" data-toggle="modal" data-target="#confirmDeleteModal">
+                                                    <i class="zmdi zmdi-delete"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>
@@ -115,4 +116,31 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block modals %}
+    <!-- modal static -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
+         data-backdrop="static">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticModalLabel">Remove order</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Do you really want to remove this product ?
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <a href="#" class="removeOrderSubmit btn btn-primary">Confirm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end modal static -->
 {% endblock %}

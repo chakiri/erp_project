@@ -8,9 +8,12 @@ use App\Repository\OrderRepository;
 
 use App\Service\CodeGenerator;
 use Doctrine\Common\Persistence\ObjectManager;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -102,5 +105,74 @@ class OrderController extends AbstractController
         }
 
         return $this->redirectToRoute('order_index');
+    }
+
+    /**
+     * @Route("/export/csv", name="order_export")
+     */
+    public function exportCsv(OrderRepository $orderRepository)
+    {
+        $response = new StreamedResponse();
+
+        $response->setCallback(function () use ($orderRepository) {
+
+            $handle = fopen('php://output', 'w+');
+
+            fputcsv($handle, ['Reference', 'Date', 'State', 'Customer', 'Product & Quantity', 'isDeleted'], ';');
+
+            $results = $orderRepository->findAllNotDeleted();
+
+            foreach($results as $result){
+
+                //get Products order
+                $products = [];
+                foreach($result->getOrderItems() as $orderItem){
+                    array_push($products, $orderItem->getProduct()->getName() . ' Qnt:' . $orderItem->getQuantity());
+                }
+
+                fputcsv($handle, [
+                    $result->getReference(),
+                    $result->getDateOrder()->format('d-m-Y H:i:s'),
+                    $result->getState(),
+                    $result->getCustomer(),
+                    implode(',', $products),
+                    $result->getIsDeleted(),
+                ], ';');
+            }
+
+            fclose($handle);
+        });
+
+        $response->setStatusCode(200);
+        $response->headers->set('Content-Type', 'text/csv; charset=utf-8');
+        $response->headers->set('Content-Disposition','attachment; filename="export-orders.csv"');
+
+        return $response;
+    }
+
+    /**
+     * @Route("/{id}/invoice/pdf", name="order_invoice")
+     */
+    public function generateInvoicePdf(Order $order)
+    {
+        $pdfOptions = new Options();
+
+        $pdfOptions->set('defaultFont', 'Arial');
+        $pdfOptions->set('isRemoteEnabled', TRUE);
+        $pdfOptions->setIsRemoteEnabled(true);
+
+        $dompdf = new Dompdf($pdfOptions);
+
+        $html = $this->renderView('order/invoice.html.twig', [
+            'order' => $order
+        ]);
+
+        $dompdf->loadHtml($html);
+
+        $dompdf->render();
+
+        $dompdf->stream("invoice".$order->getReference().".pdf", [
+            "Attachment" => false
+        ]);
     }
 }

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Invoice {{ order.customer }}</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <style>
+            .hr{
+                text-align: center;
+                display: flex;
+                align-items: center;
+            }
+
+            .hr::before,
+            .hr::after {
+                border-top: .0625em solid;
+                content: "";
+                flex: 1;
+                margin: 0 .5em;
+            }
+
+            .status--process{
+                color: green;
+            }
+            .status--denied{
+                color: red;
+            }
+        </style>
+    </head>
+
+    <body>
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="login-logo">
+                <a href="{{ path('index_default') }}">
+                    <img src="{{ asset('build/images/logoERPv2couleur.png') }}" alt="MyERP">
+                </a>
+            </div>
+            <div class="row">
+                <div class="col-md-10 ">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class=" d-block">
+                                <div class=" text-right location">
+                                    <h5 class=" mt-4 mb-1">Order N° {{ order.reference }}</h5>
+                                    <p class="blockquote">Date order : {{ order.dateOrder |date('d-m-Y') }}</p>
+                                    {% if order.state == true %}<span class="status--process">Processed</span>
+                                    {% else %} <span class="status--denied">Denied</span>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-8 offset-md-2 hr">
+                                    <b class="text-center">Customer : {{ order.customer }}</b>
+                                </div>
+                            </div>
+
+                            <table class="table table-bordered m-t-30 m-b-30">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Product</th>
+                                    <th scope="col">Reference</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% set total_price_order = 0 %}
+                                {% for orderItem in order.orderItems %}
+                                    <tr>
+                                        <td>{{ orderItem.product.name }}</td>
+                                        <td>{{ orderItem.product.reference }}</td>
+                                        <td>{{ orderItem.product.price }}€</td>
+                                        <td>{{ orderItem.quantity }}</td>
+                                        <td>{{ orderItem.price }}€</td>
+                                    </tr>
+                                    {% set total_price_order = total_price_order + orderItem.price %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+                            <div class="blockquote mt-3 text-right location">
+                                <p>Total : {{ total_price_order }}€</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- afin de pouvoir lire les fichier css de webpack -->
+
+    </body>
+</html>

@@ -57,4 +57,11 @@ class OrderRepository extends ServiceEntityRepository
 
         return $query->getQuery();
     }
+
+    public function findAllNotDeleted($statusSearch = null, $timeSearch = null)
+    {
+        return $this->findAllNotDeletedQuery($statusSearch, $timeSearch)
+            ->getResult()
+            ;
+    }
 }
