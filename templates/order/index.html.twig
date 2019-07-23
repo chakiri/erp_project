@@ -95,10 +95,10 @@
                                         {% else %} <span class="status--denied">Denied</span>
                                         {% endif %}
                                     </td>
-                                    <td>$679.00</td>
+                                    <td>{{ order.price ?? "0" }}€</td>
                                     <td>
                                         <div class="table-data-feature">
-                                            <a href="#" class="item" data-toggle="tooltip" data-placement="top" title="Send">
+                                            <a href="{{ path('order_invoice', {'id': order.id}) }}" target="_blank" class="item" data-toggle="tooltip" data-placement="top" title="Invoice">
                                                 <i class="zmdi zmdi-mail-send"></i>
                                             </a>
                                             <a href="{{ path('order_show', {'id': order.id}) }}" class="item" data-toggle="tooltip" data-placement="top" title="View">

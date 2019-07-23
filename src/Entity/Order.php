@@ -52,6 +52,11 @@ class Order
      */
     private $isDeleted;
 
+    /**
+     * @ORM\Column(type="decimal", precision=10, scale=2, nullable=true)
+     */
+    private $price;
+
     public function __construct()
     {
         $this->orderItems = new ArrayCollection();
@@ -158,6 +163,18 @@ class Order
     public function setIsDeleted(bool $isDeleted): self
     {
         $this->isDeleted = $isDeleted;
+
+        return $this;
+    }
+
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    public function setPrice($price): self
+    {
+        $this->price = $price;
 
         return $this;
     }

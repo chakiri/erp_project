@@ -60,9 +60,12 @@ class OrderController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()){
 
+            $totalOrderPrice = 0;
             foreach($order->getOrderItems() as $orderItem){
                 $orderItem->setPrice($orderItem->getProduct()->getPrice() * $orderItem->getQuantity());
+                $totalOrderPrice = $totalOrderPrice + $orderItem->getPrice();
             }
+            $order->setPrice($totalOrderPrice);
 
             $manager->persist($order);
 
