@@ -51,3 +51,7 @@
 .pagination {
     font-size: 13px;
 }
+
+.search_result a{
+    color: #666666;
+}
