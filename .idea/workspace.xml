@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="505214a5-c6f8-444a-8ea0-b0f1fe1000fe" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/default/searchResult.html.twig" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Repository/OrdersHasProductsRepository.php" afterPath="$PROJECT_DIR$/src/Repository/OrderItemRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/app.css" afterPath="$PROJECT_DIR$/assets/css/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Repository/ProductRepository.php" afterPath="$PROJECT_DIR$/src/Repository/ProductRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/header.html.twig" afterPath="$PROJECT_DIR$/templates/header.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/default/searchResult.html.twig" afterPath="$PROJECT_DIR$/templates/default/searchResult.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -93,10 +87,10 @@
       <file leaf-file-name="searchResult.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/default/searchResult.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="18" column="36" lean-forward="false" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+            <state relative-caret-position="224">
+              <caret line="16" column="33" lean-forward="true" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
               <folding>
-                <element signature="e#589#601#0#Twig" expanded="true" />
+                <element signature="e#927#939#0#Twig" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -662,12 +656,12 @@
       <workItem from="1558447114124" duration="59755000" />
       <workItem from="1560266811230" duration="11487000" />
       <workItem from="1560415797782" duration="36755000" />
-      <workItem from="1560977623210" duration="64929000" />
+      <workItem from="1560977623210" duration="65310000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="311765000" />
+    <option name="totallyTimeSpent" value="312146000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1146,10 +1140,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/default/searchResult.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="18" column="36" lean-forward="false" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+        <state relative-caret-position="224">
+          <caret line="16" column="33" lean-forward="true" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
           <folding>
-            <element signature="e#589#601#0#Twig" expanded="true" />
+            <element signature="e#927#939#0#Twig" expanded="true" />
           </folding>
         </state>
       </provider>
