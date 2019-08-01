@@ -243,4 +243,9 @@ class Customer
 
         return $this;
     }
+
+    public function getEntity(): string
+    {
+        return "customer";
+    }
 }

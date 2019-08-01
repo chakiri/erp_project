@@ -17,45 +17,45 @@ class Order
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    public $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $reference;
+    public $reference;
 
     /**
      * @ORM\Column(type="datetime", nullable=false)
      */
-    private $dateOrder;
+    public $dateOrder;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $state;
+    public $state;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Customer", inversedBy="orders")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $customer;
+    public $customer;
 
     /**
      * @Assert\NotBlank()
      * @ORM\OneToMany(targetEntity="App\Entity\OrderItem", mappedBy="order", cascade={"all"}, orphanRemoval=true)
      * @ORM\JoinColumn(nullable=false)
      */
-    private $orderItems;
+    public $orderItems;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isDeleted;
+    public $isDeleted;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=2, nullable=true)
      */
-    private $price;
+    public $price;
 
     public function __construct()
     {
@@ -177,5 +177,10 @@ class Order
         $this->price = $price;
 
         return $this;
+    }
+
+    public function getEntity(): string
+    {
+        return "order";
     }
 }

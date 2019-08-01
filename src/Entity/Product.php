@@ -319,4 +319,9 @@ class Product
 
         return $this;
     }
+
+    public function getEntity()
+    {
+        return "product";
+    }
 }

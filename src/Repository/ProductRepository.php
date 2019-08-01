@@ -62,7 +62,7 @@ class ProductRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findProductByName(string $querySearch)
+    public function findProductsByName(string $querySearch)
     {
         $query = $this->createQueryBuilder('p')
             ->where('p.name LIKE :querySearch')

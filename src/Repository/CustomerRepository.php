@@ -40,4 +40,18 @@ class CustomerRepository extends ServiceEntityRepository
 
         return $query->getResult();
     }
+
+    public function findCustomersByName(string $querySearch)
+    {
+        $query = $this->createQueryBuilder('p')
+            ->where('p.name LIKE :querySearch')
+            ->orWhere('p.email LIKE :querySearch')
+            ->setParameter('querySearch', '%'.$querySearch.'%')
+        ;
+
+        return $query
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }
