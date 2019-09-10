@@ -26,7 +26,19 @@ class CustomerRepository extends ServiceEntityRepository
             ;
 
         if (isset($typeSearch) && $typeSearch != null){
-            $query->andWhere('c.type LIKE :type')
+            switch ($typeSearch){
+                case 'customer' :
+                    $typeSearch = 0 ;
+                    break;
+                case 'supplier' :
+                    $typeSearch = 1 ;
+                    break;
+                case 'other' :
+                    $typeSearch = 2;
+                    break;
+            }
+
+            $query->andWhere('c.type = :type')
                 ->setParameter('type', $typeSearch)
             ;
         }

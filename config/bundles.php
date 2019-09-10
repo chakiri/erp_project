@@ -19,4 +19,6 @@ return [
     Liip\ImagineBundle\LiipImagineBundle::class => ['all' => true],
     Symfony\WebpackEncoreBundle\WebpackEncoreBundle::class => ['all' => true],
     Knp\Bundle\PaginatorBundle\KnpPaginatorBundle::class => ['all' => true],
+    Gos\Bundle\PubSubRouterBundle\GosPubSubRouterBundle::class => ['all' => true],
+    Gos\Bundle\WebSocketBundle\GosWebSocketBundle::class => ['all' => true],
 ];

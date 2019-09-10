@@ -47,4 +47,9 @@ class DefaultController extends AbstractController
         ]);
     }
 
+    public function messenger()
+    {
+        return $this->render('default/messenger.html.twig');
+    }
+
 }

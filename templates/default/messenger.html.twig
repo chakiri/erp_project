@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Messenger{% endblock %}
+
+{% block body %}
+
+
+    {% block javascripts %}
+        <script type="text/javascript" src="{{ asset('build/autobahn.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('build/websocket.js')}}"></script>
+    {% endblock %}
+{% endblock %}

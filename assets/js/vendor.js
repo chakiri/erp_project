@@ -28,4 +28,3 @@ require('../vendor/counter-up/jquery.waypoints.min.js');
 require('../vendor/select2/select2.min.js');
 require('../vendor/slick/slick.min.js');
 require('../vendor/wow/wow.min.js');
-

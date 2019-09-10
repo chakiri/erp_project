@@ -17,7 +17,7 @@
                                     <p>N° {{ customer.code }}</p>
                                 </div>
                                 <div class="location ">
-                                    <p><strong>Type</strong> : {{ customer.type }}</p>
+                                    <p><strong>Type</strong> : {% if customer.type == 0 %}Customer{% elseif customer.type == 1 %}Supplier{% endif %}</p>
                                 </div>
                                 <div class="location ">
                                     <p><strong>Email</strong> : {{ customer.email }}</p>

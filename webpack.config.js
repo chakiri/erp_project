@@ -23,6 +23,10 @@ Encore
     .addEntry('main', './assets/js/main.js')
     .addEntry('orderProductsPrototype', './assets/js/orderProductsPrototype.js')
 
+    //Include Javascript websocket connection
+    .addEntry('websocket', './assets/vendor/gos-websocketbundle/js/websocket.js')
+    .addEntry('autobahn', './assets/vendor/gos-websocketbundle/js/autobahn.min.js')
+
     .addStyleEntry('theme', './assets/css/theme.css')
     .addStyleEntry('font-face', './assets/css/font-face.css')
 

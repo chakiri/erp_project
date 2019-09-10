@@ -26,6 +26,7 @@ class CustomerFixtures extends Fixture
                 ->setPostalCode($faker->postcode)
                 ->setCountry($faker->country)
                 ->setCode($faker->ean8)
+                ->setCreatedAt($faker->dateTimeBetween('-10 months', 'now'))
             ;
 
             $manager->persist($customer);
