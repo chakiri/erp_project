@@ -66,4 +66,34 @@ class CustomerRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+
+    public function countAllCustomers()
+    {
+        $query = $this->createQueryBuilder('c')
+            ->where('c.isDeleted = 0')
+            ->select('COUNT(c.id)')
+        ;
+
+        return $query
+            ->getQuery()
+            ->getSingleResult()
+            ;
+    }
+
+    public function countAllCustomersByMonth($month, $year)
+    {
+        $query = $this->createQueryBuilder('c')
+            ->select('COUNT(c.id)')
+            ->where('c.isDeleted = 0')
+            ->andWhere('MONTH(c.createdAt) = :month ')
+            ->andWhere('YEAR(c.createdAt) = :year ')
+            ->setParameter('month', $month)
+            ->setParameter('year', $year)
+        ;
+
+        return $query
+            ->getQuery()
+            ->getSingleResult()
+            ;
+    }
 }

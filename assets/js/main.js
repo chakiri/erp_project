@@ -5,16 +5,19 @@
   try {
     //WidgetChart 1
     var ctx = document.getElementById("widgetChart1");
+    var data = ctx.getAttribute('data-chart');
+    var nbCustomersByMonth = JSON.parse(data);
+
     if (ctx) {
       ctx.height = 130;
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+          labels: nbCustomersByMonth.dates,
           type: 'line',
           datasets: [{
-            data: [78, 81, 80, 45, 34, 12, 40],
-            label: 'Dataset',
+            data: nbCustomersByMonth.nbCustomers,
+            label: 'Customers',
             backgroundColor: 'rgba(255,255,255,.1)',
             borderColor: 'rgba(255,255,255,.55)',
           },]

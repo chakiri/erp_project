@@ -69,7 +69,6 @@ class OrderRepository extends ServiceEntityRepository
             ;
     }
 
-
     /* Return an array of arrays
     public function findOrdersByNameT(string $query)
     {
