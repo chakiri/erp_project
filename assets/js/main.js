@@ -16,7 +16,7 @@
           labels: nbCustomersByMonth.dates,
           type: 'line',
           datasets: [{
-            data: nbCustomersByMonth.nbCustomers,
+            data: nbCustomersByMonth.nbItems,
             label: 'Customers',
             backgroundColor: 'rgba(255,255,255,.1)',
             borderColor: 'rgba(255,255,255,.55)',
@@ -74,16 +74,19 @@
 
     //WidgetChart 2
     var ctx = document.getElementById("widgetChart2");
+    var data = ctx.getAttribute('data-chart');
+    var nbOrdersByMonth = JSON.parse(data);
+
     if (ctx) {
       ctx.height = 130;
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+          labels: nbCustomersByMonth.dates,
           type: 'line',
           datasets: [{
-            data: [1, 18, 9, 17, 34, 22],
-            label: 'Dataset',
+            data: nbOrdersByMonth.nbItems,
+            label: 'Orders',
             backgroundColor: 'transparent',
             borderColor: 'rgba(255,255,255,.55)',
           },]

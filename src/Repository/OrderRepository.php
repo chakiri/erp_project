@@ -110,4 +110,36 @@ class OrderRepository extends ServiceEntityRepository
         return $stmt->getResult();
     }
 
+    public function countAllOrders()
+    {
+        $query = $this->createQueryBuilder('o')
+            ->select('COUNT(o.id)')
+            ->where('o.isDeleted = 0')
+            ->andWhere('o.state = 1')
+        ;
+
+        return $query
+            ->getQuery()
+            ->getSingleResult()
+            ;
+    }
+
+    public function countAllItemsByMonth($month, $year)
+    {
+        $query = $this->createQueryBuilder('o')
+            ->select('COUNT(o.id)')
+            ->where('o.isDeleted = 0')
+            ->andWhere('o.state = 1')
+            ->andWhere('MONTH(o.dateOrder) = :month')
+            ->andWhere('YEAR(o.dateOrder) = :year')
+            ->setParameter('month', $month)
+            ->setParameter('year', $year)
+        ;
+
+        return $query
+            ->getQuery()
+            ->getSingleResult()
+            ;
+    }
+
 }

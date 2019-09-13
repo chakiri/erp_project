@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\CustomerRepository;
 use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
+use App\Service\Statistics;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,38 +15,20 @@ class DefaultController extends AbstractController
     /**
      * @Route("/dashboard", name="index_default")
      */
-    public function index(CustomerRepository $customerRepository)
+    public function index(CustomerRepository $customerRepository, OrderRepository $orderRepository, Statistics $statistics)
     {
         $nbCustomers = $customerRepository->countAllCustomers();
-        $nbCustomersByMonth = $this->countCustomersByMonths($customerRepository);
+        $nbCustomersByMonth = $statistics->countItemsByMonths($customerRepository);
+
+        $nbOrders = $orderRepository->countAllOrders();
+        $nbOrdersByMonth = $statistics->countItemsByMonths($orderRepository);
 
         return $this->render('default/index.html.twig', [
             'nbCustomers' => reset($nbCustomers),
             'nbCustomersByMonth' => $nbCustomersByMonth,
+            'nbOrders' => reset($nbOrders),
+            'nbOrdersByMonth' => $nbOrdersByMonth,
         ]);
-    }
-
-    public function countCustomersByMonths($customerRepository)
-    {
-        //Get previous 6 months
-        for ($i=0; $i<6; $i++){
-            $dates [] = date("Y-m", strtotime(date( 'Y-m-d' )."-$i months"));
-        }
-
-        foreach ($dates as $date){
-            $month = date("m",strtotime($date));
-            $year = date("Y",strtotime($date));
-
-            $nbCustomers [] = $customerRepository->countAllCustomersByMonth($month, $year);
-        }
-        $nbCustomers = array_map('current', $nbCustomers);
-
-        $results = [
-            'dates' => array_reverse($dates),
-            'nbCustomers' => array_reverse($nbCustomers)
-        ];
-
-        return $results;
     }
 
     /**
