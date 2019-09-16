@@ -80,7 +80,7 @@ class CustomerRepository extends ServiceEntityRepository
             ;
     }
 
-    public function countAllItemsByMonth($month, $year)
+    public function countAllCustomersByMonth($month, $year)
     {
         $query = $this->createQueryBuilder('c')
             ->select('COUNT(c.id)')

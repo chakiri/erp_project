@@ -8,12 +8,14 @@ class Statistics
     /**
      * Function to count nb Items by month (customers, orders, ...)
      * @param $repository
+     * @param $function
+     * @param $nbMonths
      * @return array
      */
-    public function countItemsByMonths($repository)
+    public function countItemsByMonths($repository, $function, $nbMonths)
     {
-        //Get previous 6 months
-        for ($i=0; $i<6; $i++){
+        //Get previous nb months
+        for ($i=0; $i<$nbMonths; $i++){
             $dates [] = date("Y-m", strtotime(date( 'Y-m-d' )."-$i months"));
         }
 
@@ -21,7 +23,7 @@ class Statistics
             $month = date("m",strtotime($date));
             $year = date("Y",strtotime($date));
 
-            $nbItems [] = $repository->countAllItemsByMonth($month, $year);
+            $nbItems [] = $repository->$function($month, $year);
         }
         $nbItems = array_map('current', $nbItems);
 

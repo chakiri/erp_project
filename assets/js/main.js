@@ -218,16 +218,21 @@
 
     //WidgetChart 4
     var ctx = document.getElementById("widgetChart4");
+    var data = ctx.getAttribute('data-chart');
+    var totalEarningsByMonth = JSON.parse(data);
+
+    console.log(totalEarningsByMonth);
+
     if (ctx) {
       ctx.height = 115;
       var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+          labels: totalEarningsByMonth.dates,
           datasets: [
             {
-              label: "My First dataset",
-              data: [78, 81, 80, 65, 58, 75, 60, 75, 65, 60, 60, 75],
+              label: "Earnings",
+              data: totalEarningsByMonth.nbItems,
               borderColor: "transparent",
               borderWidth: "0",
               backgroundColor: "rgba(255,255,255,.3)"

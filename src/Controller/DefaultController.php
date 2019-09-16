@@ -18,16 +18,21 @@ class DefaultController extends AbstractController
     public function index(CustomerRepository $customerRepository, OrderRepository $orderRepository, Statistics $statistics)
     {
         $nbCustomers = $customerRepository->countAllCustomers();
-        $nbCustomersByMonth = $statistics->countItemsByMonths($customerRepository);
+        $nbCustomersByMonth = $statistics->countItemsByMonths($customerRepository, 'countAllCustomersByMonth', 6);
 
         $nbOrders = $orderRepository->countAllOrders();
-        $nbOrdersByMonth = $statistics->countItemsByMonths($orderRepository);
+        $nbOrdersByMonth = $statistics->countItemsByMonths($orderRepository, 'countAllOrdersByMonth', 6);
+
+        $totalEarnings = $orderRepository->totalSumEarningsOrders();
+        $totalEarningsByMonth = $statistics->countItemsByMonths($orderRepository, 'totalSumEarningsOrdersByMonth', 6);
 
         return $this->render('default/index.html.twig', [
             'nbCustomers' => reset($nbCustomers),
             'nbCustomersByMonth' => $nbCustomersByMonth,
             'nbOrders' => reset($nbOrders),
             'nbOrdersByMonth' => $nbOrdersByMonth,
+            'totalEarnings' => reset($totalEarnings),
+            'totalEarningsByMonth' => $totalEarningsByMonth,
         ]);
     }
 
