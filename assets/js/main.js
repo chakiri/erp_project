@@ -343,6 +343,9 @@
 
     // Percent Chart
     var ctx = document.getElementById("percent-chart");
+    var data = ctx.getAttribute('data-chart');
+    var nbOrdersByTypeProduct = JSON.parse(data);
+
     if (ctx) {
       ctx.height = 280;
       var myChart = new Chart(ctx, {
@@ -351,28 +354,28 @@
           datasets: [
             {
               label: "My First dataset",
-              data: [60, 40],
+              data: nbOrdersByTypeProduct.nbOrders,
               backgroundColor: [
                 '#00b5e9',
-                '#fa4251'
+                '#fa4251',
+                '#33bd7f'
               ],
               hoverBackgroundColor: [
                 '#00b5e9',
-                '#fa4251'
+                '#fa4251',
+                '#33bd7f'
               ],
               borderWidth: [
-                0, 0
+                0, 0, 0
               ],
               hoverBorderColor: [
+                'transparent',
                 'transparent',
                 'transparent'
               ]
             }
           ],
-          labels: [
-            'Products',
-            'Services'
-          ]
+          labels: nbOrdersByTypeProduct.types
         },
         options: {
           maintainAspectRatio: false,

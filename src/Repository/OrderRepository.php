@@ -124,6 +124,21 @@ class OrderRepository extends ServiceEntityRepository
             ;
     }
 
+    public function countAllOrdersByTypeProduct($type)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = "SELECT COUNT(DISTINCT o.id) FROM `Order` o, order_item i WHERE o.is_deleted = 0 AND o.state = 1 AND o.id = i.order_id AND i.product_id IN 
+                  (SELECT id FROM product WHERE type_id = 
+                    (SELECT id FROM type_product WHERE name = LOWER('" . $type . "')))"
+        ;
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetch();
+    }
+
     public function countAllOrdersByMonth($month, $year)
     {
         $query = $this->createQueryBuilder('o')
