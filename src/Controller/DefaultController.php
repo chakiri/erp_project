@@ -26,7 +26,8 @@ class DefaultController extends AbstractController
         $totalEarnings = $orderRepository->totalSumEarningsOrders();
         $totalEarningsByMonth = $statistics->countItemsByMonths($orderRepository, 'totalSumEarningsOrdersByMonth', 6);
 
-        $nbOrdersByTypeProduct = $statistics->getTypesProduct();
+        $nbOrdersByTypeProduct = $statistics->countOrdersByTypeProduct();
+        $nbOrdersByTypeProductPerMonth = $statistics->countOrdersByTypeProductByMonth(6);
 
         return $this->render('default/index.html.twig', [
             'nbCustomers' => reset($nbCustomers),
@@ -35,7 +36,8 @@ class DefaultController extends AbstractController
             'nbOrdersByMonth' => $nbOrdersByMonth,
             'totalEarnings' => reset($totalEarnings),
             'totalEarningsByMonth' => $totalEarningsByMonth,
-            'nbOrdersByTypeProduct' => $nbOrdersByTypeProduct
+            'nbOrdersByTypeProduct' => $nbOrdersByTypeProduct,
+            'nbOrdersByTypeProductPerMonth' => $nbOrdersByTypeProductPerMonth
         ]);
     }
 

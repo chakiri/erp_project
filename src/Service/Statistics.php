@@ -50,7 +50,7 @@ class Statistics
     /**
      * @return array
      */
-    public function getTypesProduct()
+    public function countOrdersByTypeProduct()
     {
         foreach ($this->typeProductRepository->findAll() as $result){
             $typesProduct [] = $result->getName();
@@ -64,6 +64,39 @@ class Statistics
         $results = [
             'types' => $typesProduct,
             'nbOrders' => $nbOrdersByTypeProduct
+        ];
+
+        return $results;
+    }
+
+    public function countOrdersByTypeProductByMonth($nbMonths)
+    {
+        //Get previous nb months
+        for ($i=0; $i<$nbMonths; $i++){
+            $dates [] = date("Y-m", strtotime(date( 'Y-m-d' )."-$i months"));
+        }
+
+        //Get product types
+        foreach ($this->typeProductRepository->findAll() as $result){
+            $typesProduct [] = $result->getName();
+        }
+
+        foreach ($typesProduct as $type){
+            $nbOrdersPerMonth = [];
+            foreach ($dates as $date){
+                $month = date("m",strtotime($date));
+                $year = date("Y",strtotime($date));
+
+                $result = $this->orderRepository->countAllOrdersByTypeProductByMonth($type, $month, $year);
+                $nbOrdersPerMonth [] = reset($result);
+            }
+            $nbOrders [] = array_reverse($nbOrdersPerMonth);
+        }
+
+        $results = [
+            'dates' => array_reverse($dates),
+            'types' => $typesProduct,
+            'nbOrders' => $nbOrders
         ];
 
         return $results;

@@ -221,8 +221,6 @@
     var data = ctx.getAttribute('data-chart');
     var totalEarningsByMonth = JSON.parse(data);
 
-    console.log(totalEarningsByMonth);
-
     if (ctx) {
       ctx.height = 115;
       var myChart = new Chart(ctx, {
@@ -259,40 +257,23 @@
     }
 
     // Recent Report
-    const brandProduct = 'rgba(0,181,233,0.8)'
-    const brandService = 'rgba(0,173,95,0.8)'
-
-    var elements = 10
-    var data1 = [52, 60, 55, 50, 65, 80, 57, 70, 105, 115]
-    var data2 = [102, 70, 80, 100, 56, 53, 80, 75, 65, 90]
-
     var ctx = document.getElementById("recent-rep-chart");
+    var data = ctx.getAttribute('data-chart');
+    data = JSON.parse(data);
+
+    const brandType = ['rgba(0,181,233,0.8)', '#fa4251', 'rgba(0,173,95,0.8)'];
+
+    /*for (i = 0; i < data.nbOrders; i++){
+        window['data'+i]= data.nbOrders[i];
+    }*/
+
     if (ctx) {
       ctx.height = 250;
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', ''],
-          datasets: [
-            {
-              label: 'My First dataset',
-              backgroundColor: brandService,
-              borderColor: 'transparent',
-              pointHoverBackgroundColor: '#fff',
-              borderWidth: 0,
-              data: data1
-
-            },
-            {
-              label: 'My Second dataset',
-              backgroundColor: brandProduct,
-              borderColor: 'transparent',
-              pointHoverBackgroundColor: '#fff',
-              borderWidth: 0,
-              data: data2
-
-            }
-          ]
+          labels: data.dates,
+          datasets: []
         },
         options: {
           maintainAspectRatio: true,
@@ -315,8 +296,8 @@
               ticks: {
                 beginAtZero: true,
                 maxTicksLimit: 5,
-                stepSize: 50,
-                max: 150,
+                stepSize: 1,
+                max: 5,
                 fontFamily: "Poppins",
                 fontSize: 12
               },
@@ -335,10 +316,22 @@
               hoverBorderWidth: 3
             }
           }
-
-
         }
       });
+
+      console.log(data.nbOrders);
+      data.nbOrders.forEach(function(a, i){
+          myChart.data.datasets.push({
+              label: 'orders',
+              backgroundColor: brandType[i],
+              borderColor: 'transparent',
+              pointHoverBackgroundColor: '#fff',
+              borderWidth: 0,
+              data: a
+          });
+      });
+      myChart.update();
+
     }
 
     // Percent Chart

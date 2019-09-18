@@ -55,3 +55,8 @@
 .search_result a{
     color: #666666;
 }
+
+/*charts*/
+.chart-percent-card, .recent-report{
+    height: 450px;
+}
