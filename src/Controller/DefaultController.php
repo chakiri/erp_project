@@ -22,6 +22,7 @@ class DefaultController extends AbstractController
 
         $nbOrders = $orderRepository->countAllOrders();
         $nbOrdersByMonth = $statistics->countItemsByMonths($orderRepository, 'countAllOrdersByMonth', 6);
+        $nbOrdersDenied = $orderRepository->countAllOrdersDenied();
 
         $totalEarnings = $orderRepository->totalSumEarningsOrders();
         $totalEarningsByMonth = $statistics->countItemsByMonths($orderRepository, 'totalSumEarningsOrdersByMonth', 6);
@@ -34,6 +35,7 @@ class DefaultController extends AbstractController
             'nbCustomersByMonth' => $nbCustomersByMonth,
             'nbOrders' => reset($nbOrders),
             'nbOrdersByMonth' => $nbOrdersByMonth,
+            'nbOrdersDenied' => reset($nbOrdersDenied),
             'totalEarnings' => reset($totalEarnings),
             'totalEarningsByMonth' => $totalEarningsByMonth,
             'nbOrdersByTypeProduct' => $nbOrdersByTypeProduct,

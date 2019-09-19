@@ -56,11 +56,11 @@
                         <div class="overview__inner">
                             <div class="overview-box clearfix">
                                 <div class="icon">
-                                    <i class="zmdi zmdi-calendar-note"></i>
+                                    <i class="zmdi zmdi-alert-circle-o"></i>
                                 </div>
                                 <div class="text">
-                                    <h2>1,086</h2>
-                                    <span>this week</span>
+                                    <h2>{{ nbOrdersDenied }}</h2>
+                                    <span>denieded</span>
                                 </div>
                             </div>
                             <div class="overview-chart">
@@ -137,6 +137,8 @@
         </div>
     </div>
     <!-- END MAIN CONTENT-->
+{% endblock %}
 
-    {% block javascripts %}{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('build/chart.js')}}"></script>
 {% endblock %}

@@ -21,6 +21,7 @@ Encore
     .addEntry('app', './assets/js/app.js')
     .addEntry('vendor', './assets/js/vendor.js')
     .addEntry('main', './assets/js/main.js')
+    .addEntry('chart', './assets/js/chart.js')
     .addEntry('orderProductsPrototype', './assets/js/orderProductsPrototype.js')
 
     //Include Javascript websocket connection

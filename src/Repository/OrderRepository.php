@@ -142,6 +142,20 @@ class OrderRepository extends ServiceEntityRepository
             ;
     }
 
+    public function countAllOrdersDenied()
+    {
+        $query = $this->createQueryBuilder('o')
+            ->select('COUNT(o.id)')
+            ->where('o.isDeleted = 0')
+            ->andWhere('o.state = 0')
+        ;
+
+        return $query
+            ->getQuery()
+            ->getSingleResult()
+            ;
+    }
+
     public function totalSumEarningsOrders()
     {
         $query = $this->createQueryBuilder('o')
