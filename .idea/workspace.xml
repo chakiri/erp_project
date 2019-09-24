@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="505214a5-c6f8-444a-8ea0-b0f1fe1000fe" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/packages/security.yaml" afterPath="$PROJECT_DIR$/config/packages/security.yaml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/header.html.twig" afterPath="$PROJECT_DIR$/templates/header.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/security/login.html.twig" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/security/registration.html.twig" afterPath="$PROJECT_DIR$/templates/security/registration.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/chart.js" afterPath="$PROJECT_DIR$/assets/js/chart.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -60,9 +57,6 @@
               <caret line="37" column="27" lean-forward="false" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="27" />
               <folding>
                 <element signature="e#34#72#0#PHP" expanded="true" />
-                <element signature="e#1380#1405#0#PHP" expanded="false" />
-                <element signature="e#2753#2785#0#PHP" expanded="false" />
-                <element signature="e#2946#2975#1#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -105,11 +99,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="chart.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="chart.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/chart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-86">
-              <caret line="65" column="41" lean-forward="false" selection-start-line="65" selection-start-column="41" selection-end-line="65" selection-end-column="41" />
+            <state relative-caret-position="39">
+              <caret line="178" column="53" lean-forward="true" selection-start-line="178" selection-start-column="53" selection-end-line="178" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -130,12 +124,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="917">
               <caret line="163" column="38" lean-forward="false" selection-start-line="163" selection-start-column="36" selection-end-line="166" selection-end-column="44" />
-              <folding>
-                <element signature="e#247#261#0#Twig" expanded="false" />
-                <element signature="e#9733#9746#0#Twig" expanded="false" />
-                <element signature="e#10656#10666#0#Twig" expanded="false" />
-                <element signature="e#11025#11040#0#Twig" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -165,23 +154,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SecurityController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SecurityController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Controller/SecurityController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
+            <state relative-caret-position="154">
               <caret line="124" column="29" lean-forward="false" selection-start-line="124" selection-start-column="16" selection-end-line="124" selection-end-column="29" />
-              <folding>
-                <element signature="e#1804#1818#1#PHP" expanded="false" />
-                <element signature="e#1861#1894#0#PHP" expanded="false" />
-                <element signature="e#2263#2289#0#PHP" expanded="false" />
-                <element signature="e#3046#3075#1#PHP" expanded="false" />
-                <element signature="e#3301#3326#0#PHP" expanded="false" />
-                <element signature="e#3834#3850#1#PHP" expanded="false" />
-                <element signature="e#3894#3932#1#PHP" expanded="false" />
-                <element signature="e#4446#4462#1#PHP" expanded="false" />
-                <element signature="e#4801#4817#1#PHP" expanded="false" />
-                <element signature="e#4860#4894#0#PHP" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -295,7 +273,6 @@
         <option value="$PROJECT_DIR$/assets/js/main.js" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
         <option value="$PROJECT_DIR$/templates/base.html.twig" />
-        <option value="$PROJECT_DIR$/assets/js/chart.js" />
         <option value="$PROJECT_DIR$/src/Repository/OrderRepository.php" />
         <option value="$PROJECT_DIR$/src/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/templates/default/index.html.twig" />
@@ -303,6 +280,7 @@
         <option value="$PROJECT_DIR$/templates/security/login.html.twig" />
         <option value="$PROJECT_DIR$/templates/security/registration.html.twig" />
         <option value="$PROJECT_DIR$/config/packages/security.yaml" />
+        <option value="$PROJECT_DIR$/assets/js/chart.js" />
       </list>
     </option>
   </component>
@@ -725,12 +703,12 @@
       <workItem from="1560415797782" duration="36755000" />
       <workItem from="1560977623210" duration="86039000" />
       <workItem from="1565596994963" duration="43487000" />
-      <workItem from="1568793147637" duration="12890000" />
+      <workItem from="1568793147637" duration="13699000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="394548000" />
+    <option name="totallyTimeSpent" value="395357000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1132,14 +1110,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/chart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-86">
-          <caret line="65" column="41" lean-forward="false" selection-start-line="65" selection-start-column="41" selection-end-line="65" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Repository/OrderRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="485">
@@ -1169,9 +1139,6 @@
           <caret line="37" column="27" lean-forward="false" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="27" />
           <folding>
             <element signature="e#34#72#0#PHP" expanded="true" />
-            <element signature="e#1380#1405#0#PHP" expanded="false" />
-            <element signature="e#2753#2785#0#PHP" expanded="false" />
-            <element signature="e#2946#2975#1#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1217,31 +1184,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="917">
           <caret line="163" column="38" lean-forward="false" selection-start-line="163" selection-start-column="36" selection-end-line="166" selection-end-column="44" />
-          <folding>
-            <element signature="e#247#261#0#Twig" expanded="false" />
-            <element signature="e#9733#9746#0#Twig" expanded="false" />
-            <element signature="e#10656#10666#0#Twig" expanded="false" />
-            <element signature="e#11025#11040#0#Twig" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/SecurityController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
+        <state relative-caret-position="154">
           <caret line="124" column="29" lean-forward="false" selection-start-line="124" selection-start-column="16" selection-end-line="124" selection-end-column="29" />
-          <folding>
-            <element signature="e#1804#1818#1#PHP" expanded="false" />
-            <element signature="e#1861#1894#0#PHP" expanded="false" />
-            <element signature="e#2263#2289#0#PHP" expanded="false" />
-            <element signature="e#3046#3075#1#PHP" expanded="false" />
-            <element signature="e#3301#3326#0#PHP" expanded="false" />
-            <element signature="e#3834#3850#1#PHP" expanded="false" />
-            <element signature="e#3894#3932#1#PHP" expanded="false" />
-            <element signature="e#4446#4462#1#PHP" expanded="false" />
-            <element signature="e#4801#4817#1#PHP" expanded="false" />
-            <element signature="e#4860#4894#0#PHP" expanded="false" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/chart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="39">
+          <caret line="178" column="53" lean-forward="true" selection-start-line="178" selection-start-column="53" selection-end-line="178" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>
